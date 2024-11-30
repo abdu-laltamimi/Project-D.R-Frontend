@@ -72,9 +72,7 @@ const Links = () => {
           {l.text}
         </a>
       ))}
-      <a href="/about" className="relative text-white font-semibold hover:text-gray-400">
-        About Us
-      </a>
+      
     </div>
   );
 };
@@ -144,7 +142,7 @@ const MobileMenuLink = ({ children, href, FoldContent, setMenuOpen }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative text-neutral-950">
+    <div className="relative text-zinc-950">
       {FoldContent ? (
         <div
           className="flex w-full cursor-pointer items-center justify-between border-b border-neutral-300 py-6 text-start text-2xl font-semibold"
@@ -205,7 +203,7 @@ const MobileMenu = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="block lg:hidden">
-      <button onClick={() => setOpen(true)} className="block text-3xl">
+      <button onClick={() => setOpen(true)} className="block text-3xl text-white">
         <FiMenu />
       </button>
       <AnimatePresence>
@@ -217,13 +215,13 @@ const MobileMenu = () => {
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="fixed left-0 top-0 flex h-screen w-full flex-col bg-white"
           >
-            <div className="flex items-center justify-between p-6">
+            <div className="flex items-center justify-between p-6 bg-zinc-900">
               <Logo color="black" />
               <button onClick={() => setOpen(false)}>
-                <FiX className="text-3xl text-neutral-950" />
+                <FiX className="text-3xl text-white" />
               </button>
             </div>
-            <div className="h-screen overflow-y-scroll bg-neutral-100 p-6">
+            <div className="h-screen overflow-y-scroll bg-white p-6">
               {LINKS.map((l) => (
                 <MobileMenuLink
                   key={l.text}
@@ -235,7 +233,7 @@ const MobileMenu = () => {
                 </MobileMenuLink>
               ))}
             </div>
-            <div className="flex justify-end bg-neutral-950 p-6">
+            <div className="flex justify-center bg-zinc-900 p-6">
               <CTAs />
             </div>
           </motion.nav>
@@ -255,5 +253,9 @@ const LINKS = [
   {
     text: "Projects",
     href: "/projects",
+  },
+  {
+    text: "About Us",
+    href: "/about",
   },
 ];
