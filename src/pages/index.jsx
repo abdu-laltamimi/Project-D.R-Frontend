@@ -1,22 +1,35 @@
 import Head from 'next/head'
-import { EmailCapture, Services } from "@/components/email-capture/EmailCapture";
-import { FeatureToggles } from "@/components/feature-toggles/FeatureToggles";
-import { Supports } from "@/components/supports/Supports";
+import dynamic from 'next/dynamic';
 import { Hero } from "@/components/hero/Hero";
-import { Logos } from "@/components/logos/Logos";
-import { ExpandableNavBar } from "@/components/navigation/ExpandableNavBar";
-import { NAV_LINKS } from "@/components/navigation/constants";
-import { Stats } from "@/components/stats/Stats";
-import { BenefitsGrid } from "@/components/benefits-grid/BenefitsGrid";
-import { font } from "@/fonts";
-import { BlogCarousel } from "@/components/blog/BlogCarousel";
-import { CTA, FinalCTA } from "@/components/final-cta/FinalCTA";
-import { Pricing } from "@/components/pricing/Pricing";
-import { AboutUs } from "@/components/AboutUs";
 import Example from "@/components/NavBar";
-import { RecentProjects } from "@/components/Projects/RecentProjects";
-import { WhyChooseUs } from "@/components/Us/WhyChooseUs";
+import { font } from "@/fonts";
 import Footer from '@/components/footer/Footer';
+
+// Dynamically import components
+const AboutUs = dynamic(() => import('@/components/AboutUs').then(mod => mod.AboutUs), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const Services = dynamic(() => import('@/components/email-capture/EmailCapture').then(mod => mod.Services), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const WhyChooseUs = dynamic(() => import('@/components/Us/WhyChooseUs').then(mod => mod.WhyChooseUs), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const RecentProjects = dynamic(() => import('@/components/Projects/RecentProjects').then(mod => mod.RecentProjects), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const FinalCTA = dynamic(() => import('@/components/final-cta/FinalCTA').then(mod => mod.FinalCTA), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
 
 export default function Home() {
   return (
