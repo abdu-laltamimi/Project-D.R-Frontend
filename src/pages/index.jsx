@@ -52,7 +52,7 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" /> */}
       </Head>
 
-      <main className={`${font.className} min-h-screen overflow-hidden bg-zinc-800`}>
+      <main className={`${font.className} min-h-screen  bg-zinc-800`}>
         <header>
           <Example />
           <Hero />
