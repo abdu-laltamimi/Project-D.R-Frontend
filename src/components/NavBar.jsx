@@ -244,25 +244,39 @@ const LINKS = [
     text: "Services",
     href: "/services",
     component: () => (
-      <div className="grid gap-2 p-4 bg-white text-black rounded-lg shadow-md w-48">
-        <Link href="/services/renovations" className="hover:text-blue-500">
-          Renovations
-        </Link>
-        <Link href="/services/extensions" className="hover:text-blue-500">
-          Extensions
-        </Link>
-        <Link href="/services/conversions" className="hover:text-blue-500">
-          Conversions
-        </Link>
-        <Link href="/services/bathroom-remodel" className="hover:text-blue-500">
-          Bathroom Remodel
-        </Link>
-        <Link href="/services/kitchen-remodel" className="hover:text-blue-500">
-          Kitchen Remodel
-        </Link>
-        <Link href="/services/landscaping" className="hover:text-blue-500">
-          Landscaping
-        </Link>
+      <div className="grid gap-1 p-4 py-8 bg-white text-black rounded-lg shadow-md w-64">
+        <div>
+          <Link href="/services/house-renovations" className="hover:text-zinc-700">
+            House Renovations
+          </Link>
+        </div>
+        <div>
+          <Link href="/services/bathroom-refurb" className="hover:text-zinc-700">
+            Bathroom Refurb
+          </Link>
+        </div>
+        <div>
+          <Link href="/services/kitchen-refurbishment" className="hover:text-zinc-700">
+            Kitchen Refurb
+          </Link>
+        </div>
+        <div>
+          <Link href="/services/painting-decorating" className="hover:text-zinc-700">
+            Painting & Decorating
+          </Link>
+        </div>
+        <div>
+          <Link href="/services/house-extensions" className="hover:text-zinc-700">
+            House Extensions
+          </Link>
+        </div>
+        <div className="mt-4">
+          <Link href="/services/loft-garage-conversions">
+            <button className="w-full py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-700">
+              View All Services
+            </button>
+          </Link>
+        </div>
       </div>
     ),
   },

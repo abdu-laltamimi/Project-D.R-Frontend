@@ -34,7 +34,7 @@ export const AboutUs = () => {
         </div>
 
         {/* Right Column (Full-bleed Image) */}
-        <div className="relative h-full md:absolute md:right-0 md:w-1/2 md:top-0 md:-right-8 md:bottom-0"
+        <div className="relative h-full md:absolute md:right-0 md:w-1/2 md:top-0 md:-right-16 md:bottom-0"
           style={{
             backgroundImage: `url('hand.png')`,
             backgroundSize: 'cover',
