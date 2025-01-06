@@ -25,7 +25,7 @@ const Services2 = () => {
           description:
             "Tailored kitchen design and installation for modern, functional, and beautiful spaces.",
           image: "/kitchen.png",
-          link: "/services/kitchen-refurb",
+          link: "/services/kitchen-refurbishment",
         },
       ],
     },
@@ -70,14 +70,14 @@ const Services2 = () => {
           description:
             "A full-service approach: design, approvals, and build – all under one roof.",
           image: "/design.png",
-          link: "/services/design-build",
+          link: "/services/design-build-services",
         },
         {
           title: "Investor-Focused Services",
           description:
             "Tailored support for investors to maximise property potential.",
           image: "/investor.png",
-          link: "/services/investor-services",
+          link: "/services/investor-focused-services",
         },
       ],
     },
