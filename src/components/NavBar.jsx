@@ -271,7 +271,7 @@ const LINKS = [
           </Link>
         </div>
         <div className="mt-4">
-          <Link href="/services/loft-garage-conversions">
+          <Link href="/services">
             <button className="w-full py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-700">
               View All Services
             </button>
