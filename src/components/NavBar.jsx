@@ -52,7 +52,7 @@ const Logo = ({ className = "", color = "white", link = "/" }) => {
     <div className={`flex items-center gap-2 pl-10  ${className}`}>
       <Link href={link}>
         <img
-          src="/improved.png"
+          src="/refurbishLogo.png"
           alt="Logo"
           className="w-32 h-auto"
         />
