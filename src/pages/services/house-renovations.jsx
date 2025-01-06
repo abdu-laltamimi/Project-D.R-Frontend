@@ -218,7 +218,7 @@ const HouseRenovations = () => {
         <h2 className="text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            className="bg-gradient-to-br from-zinc-800 to-zinc-900 p-8 rounded-3xl"
+            className=" p-8 rounded-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             key={testimonialIndex}
