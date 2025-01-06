@@ -16,7 +16,7 @@ const services = [
   {
     title: "Bathroom Refurb",
     description: "Complete renovations to upgrade and modernize your property with precision and care.",
-    image: "/afterbath3.png",
+    image: "/main-bathroom.png",
     link: "/services/bathroom-refurb",
   },
   {
