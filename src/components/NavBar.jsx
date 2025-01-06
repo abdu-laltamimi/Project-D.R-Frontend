@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FiMenu, FiArrowRight, FiX, FiChevronDown } from "react-icons/fi";
-import { FaUserCircle, FaPhoneAlt } from "react-icons/fa";
 import {
   useMotionValueEvent,
   AnimatePresence,
@@ -9,11 +8,11 @@ import {
 } from "framer-motion";
 import useMeasure from "react-use-measure";
 import Link from "next/link";
+
 const Example = () => {
   return (
     <>
       <FlyoutNav />
-     
     </>
   );
 };
@@ -28,51 +27,52 @@ const FlyoutNav = () => {
 
   return (
     <nav
-    className={`fixed top-0 z-50 w-full px-6 text-neutral-900 
+      className={`fixed top-0 z-50 w-full px-6 text-neutral-900 
       transition-all duration-300 ease-out lg:px-12
       ${
         scrolled
           ? "bg-zinc-900 py-2 pt-2 text-black "
-          : "bg-zinc-900 py-2 pt-3 shadow-none text-black  "
+          : "bg-zinc-900 py-2 pt-3 shadow-none text-black"
       }`}
-  >
-  <div className="mx-auto flex max-w-7xl items-center justify-start">
-    <Logo className="mr-auto w-52 h-auto" /> {/* Adjust width here to make logo bigger */}
-      <div className="hidden gap-6 lg:flex">
-        <Links />
-        <CTAs />
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <Logo className="mr-auto w-52 h-auto" />
+        <div className="hidden gap-6 lg:flex">
+          <Links />
+          <CTAs />
+        </div>
+        <MobileMenu />
       </div>
-      <MobileMenu />
-    </div>
-  </nav>  
-  );
-};
-const Logo = ({ className = "", color = "white" }) => {
-  return (
-    <div className={`flex items-center gap-2 pl-10  ${className}`}>
-      <img
-        src="/improved.png" // Replace with your actual file name
-        alt="Logo"
-        className="w-32 h-auto" // Made logo smaller by reducing width from 52 to 32
-      />
-    </div>
+    </nav>
   );
 };
 
+const Logo = ({ className = "", color = "white", link = "/" }) => {
+  return (
+    <div className={`flex items-center gap-2 pl-10  ${className}`}>
+      <Link href={link}>
+        <img
+          src="/improved.png"
+          alt="Logo"
+          className="w-32 h-auto"
+        />
+      </Link>
+    </div>
+  );
+};
 
 const Links = () => {
   return (
     <div className="flex items-center gap-6 text-zinc-900 font-bold">
       {LINKS.map((l) => (
-        <a 
-          key={l.text} 
-          href={l.href} 
-          className="relative text-white font-semibold hover:text-gray-400"
+        <NavLink
+          key={l.text}
+          href={l.href}
+          FlyoutContent={l.component}
         >
           {l.text}
-        </a>
+        </NavLink>
       ))}
-      
     </div>
   );
 };
@@ -88,14 +88,14 @@ const NavLink = ({ children, href, FlyoutContent }) => {
       onMouseLeave={() => setOpen(false)}
       className="relative h-fit w-fit"
     >
-    <a href={href} className="relative text-white font-semibold">
+      <a href={href} className="relative text-white font-semibold">
         {children}
         <span
           style={{
             transform: showFlyout ? "scaleX(1)" : "scaleX(0)",
           }}
           className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-zinc-700 transition-transform duration-300 ease-out"
-          />
+        />
       </a>
       <AnimatePresence>
         {showFlyout && (
@@ -116,26 +116,24 @@ const NavLink = ({ children, href, FlyoutContent }) => {
     </div>
   );
 };
+
 const CTAs = () => {
   return (
-      <div className="flex items-center gap-3">
-          {/* Remove <a> from inside the <Link> */}
-          <Link href="/quote">
-              <div className="flex items-center gap-2 rounded-lg border-2 border-zinc-100 px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black cursor-pointer">
-                  <FaUserCircle />
-                  <span>Free Quote</span>
-              </div>
-          </Link>
-          <a 
-              href="tel:+441234567890"
-              className="rounded-lg border-2 border-[#003d4d] bg-[#003d4d] px-4 py-2 font-semibold text-white transition-colors hover:border-zinc-600 hover:bg-zinc-600 hover:text-white"
-          >
-              <span>Contact Us</span>
-          </a>
-      </div>
+    <div className="flex items-center gap-3">
+      <Link href="/quote">
+        <div className="flex items-center gap-2 rounded-lg border-2 border-zinc-100 px-4 py-2 font-semibold text-white transition-colors hover:bg-white hover:text-black cursor-pointer">
+          Free Quote
+        </div>
+      </Link>
+      <a
+        href="tel:+441234567890"
+        className="rounded-lg border-2 border-[#003d4d] bg-[#003d4d] px-4 py-2 font-semibold text-white transition-colors hover:border-zinc-600 hover:bg-zinc-600 hover:text-white"
+      >
+        Contact Us
+      </a>
+    </div>
   );
 };
-
 
 const MobileMenuLink = ({ children, href, FoldContent, setMenuOpen }) => {
   const [ref, { height }] = useMeasure();
@@ -237,12 +235,36 @@ const MobileMenu = () => {
   );
 };
 
-export default Example;
-
 const LINKS = [
+  {
+    text: "Home",
+    href: "/",
+  },
   {
     text: "Services",
     href: "/services",
+    component: () => (
+      <div className="grid gap-2 p-4 bg-white text-black rounded-lg shadow-md w-48">
+        <Link href="/services/renovations" className="hover:text-blue-500">
+          Renovations
+        </Link>
+        <Link href="/services/extensions" className="hover:text-blue-500">
+          Extensions
+        </Link>
+        <Link href="/services/conversions" className="hover:text-blue-500">
+          Conversions
+        </Link>
+        <Link href="/services/bathroom-remodel" className="hover:text-blue-500">
+          Bathroom Remodel
+        </Link>
+        <Link href="/services/kitchen-remodel" className="hover:text-blue-500">
+          Kitchen Remodel
+        </Link>
+        <Link href="/services/landscaping" className="hover:text-blue-500">
+          Landscaping
+        </Link>
+      </div>
+    ),
   },
   {
     text: "Projects",
@@ -250,6 +272,8 @@ const LINKS = [
   },
   {
     text: "About Us",
-    href: "/about",
+    href: "/about-us",
   },
 ];
+
+export default Example;

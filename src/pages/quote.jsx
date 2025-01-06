@@ -1,12 +1,16 @@
-import Example from "@/components/NavBar";
 import React, { useState } from "react";
-import Link from "next/link"; // Import Next.js Link for navigation
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ChevronLeft, ArrowRight } from "lucide-react";
+import Navbar from "@/components/NavBar";
 import Footer from "@/components/footer/Footer";
+
 const Quote = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
+    projectType: "",
     message: "",
   });
 
@@ -24,169 +28,201 @@ const Quote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-800 to-zinc-950 text-gray-100 flex flex-col items-center justify-center pt-20">
-      {/* Navbar */}
-      {/* <Example to="/" /> */}
-      <Link href="/" className="absolute top-8 left-8">
-        <div className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          <span className="font-medium">Back Home</span>
-        </div>
-      </Link>
-      {/* Main Container */}
-      <div className="max-w-5xl mx-auto bg-gradient-to-br from-zinc-800 to-zinc-950 rounded-3xl shadow-xl overflow-hidden lg:grid lg:grid-cols-2">
-        {/* Left Side - Image & Content */}
-        <div className="hidden lg:block relative">
+    <div className="min-h-screen bg-zinc-900">
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="relative h-[85vh] flex items-center">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/70 to-zinc-900/30" />
           <img
-            src="/mannew.png" // Replace with your image path
-            alt="Contact Us"
-            className="h-full w-full object-cover"
+            src="/modern-building2.jpeg"
+            alt="Modern Architecture"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/90"></div>
-          <div className="absolute bottom-8 left-8 text-white">
-            <h2 className="text-3xl font-bold">Capturing Moments, Creating Memories</h2>
-            <p className="mt-2 text-gray-300">
-              Get in touch today and start your journey with us.
-            </p>
-          </div>
         </div>
+        
+        <div className="relative container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <h1 className="font-semibold text-5xl lg:text-6xl text-white tracking-tight mb-6">
+              Request A Consultation
+            </h1>
+            {/* <div className="h-px w-24 bg-zinc-500 mb-8" /> */}
+            <p className="text-xl text-zinc-300 max-w-xl">
+              Let's discuss your project requirements and create a tailored solution.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Right Side - Form */}
-        <div className="p-8 lg:p-12">
-          <h2 className="text-3xl font-bold text-center">Get a Free Quote</h2>
-          <p className="text-gray-400 text-center mt-2">
-            Fill in the form below, and we’ll get back to you shortly.
-          </p>
-
-          <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-            <div className="flex gap-4">
-              {/* Full Name */}
-              <div className="flex-1">
-                <label
-                  htmlFor="fullName"
-                  className="block text-sm font-medium text-gray-400 mb-2"
-                >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                  placeholder="John Doe"
-                  className="w-full px-4 py-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-colors"
-                />
-              </div>
-              {/* Phone */}
-              <div className="flex-1">
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-400 mb-2"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  placeholder="(123) 456-7890"
-                  className="w-full px-4 py-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-colors"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-400 mb-2"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="john@example.com"
-                className="w-full px-4 py-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-colors"
-              />
-            </div>
-
-            {/* Message */}
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-400 mb-2"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                placeholder="Your message here..."
-                rows="4"
-                className="w-full px-4 py-2 bg-gray-800 text-gray-300 border border-gray-700 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-colors resize-none"
-              />
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full border-white border text-white py-3 px-4 rounded-md hover:bg-white hover:text-black transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+      {/* Form Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-20">
+            {/* Left Column - Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              Send Message
-            </button>
-          </form>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <label className="block text-sm text-zinc-400 mb-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white 
+                               focus:border-zinc-600 focus:outline-none transition-colors"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-zinc-400 mb-2">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white 
+                               focus:border-zinc-600 focus:outline-none transition-colors"
+                      placeholder="+44 123 456 7890"
+                      required
+                    />
+                  </div>
+                </div>
 
-          {/* Social Login */}
+                <div>
+                  <label className="block text-sm text-zinc-400 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white 
+                             focus:border-zinc-600 focus:outline-none transition-colors"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
 
+                <div>
+                  <label className="block text-sm text-zinc-400 mb-2">
+                    Project Type
+                  </label>
+                  <select
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleChange}
+                    className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white 
+                             focus:border-zinc-600 focus:outline-none transition-colors"
+                    required
+                  >
+                    <option value="" className="bg-zinc-900">Select Project Type</option>
+                    <option value="basement-cellar-conversions" className="bg-zinc-900">Basement & Cellar Conversions</option>
+                    <option value="bathroom-refurbishment" className="bg-zinc-900">Bathroom Refurbishment</option>
+                    <option value="commercial-conversions" className="bg-zinc-900">Commercial Conversions</option>
+                    <option value="design-build" className="bg-zinc-900">Design & Build</option>
+                    <option value="house-extensions" className="bg-zinc-900">House Extensions</option>
+                    <option value="house-renovations" className="bg-zinc-900">House Renovations</option>
+                    <option value="investor-focused-services" className="bg-zinc-900">Investor Focused Services</option>
+                    <option value="kitchen-refurbishment" className="bg-zinc-900">Kitchen Refurbishment</option>
+                    <option value="loft-garage-conversions" className="bg-zinc-900">Loft & Garage Conversions</option>
+                    <option value="on-demand-maintenance" className="bg-zinc-900">On-Demand Maintenance</option>
+                    <option value="painting-decorating" className="bg-zinc-900">Painting & Decorating</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm text-zinc-400 mb-2">
+                    Project Details
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows="6"
+                    className="w-full bg-transparent border border-zinc-800 px-4 py-3 text-white 
+                             focus:border-zinc-600 focus:outline-none transition-colors resize-none"
+                    placeholder="Please describe your project requirements..."
+                    required
+                  />
+                </div>
+
+                <motion.button
+                  type="submit"
+                  className="w-full border border-zinc-600 text-white py-4 px-8
+                           hover:bg-zinc-800 transition-colors duration-300 group"
+                  whileHover={{ scale: 1.01 }}
+                >
+                  <span className="flex items-center justify-center">
+                    Submit Request
+                    <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </motion.button>
+              </form>
+            </motion.div>
+
+            {/* Right Column - Information */}
+            <div className="lg:pl-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="space-y-12"
+              >
+                <div>
+                  <h3 className="text-2xl font-light text-white mb-6">Why Choose RIBA</h3>
+                  <div className="space-y-8">
+                    {[
+                      {
+                        title: "Expert Consultation",
+                        description: "Benefit from our decades of industry experience and technical expertise."
+                      },
+                      {
+                        title: "Tailored Solutions",
+                        description: "Custom approaches designed specifically for your project requirements."
+                      },
+                      {
+                        title: "Quality Assurance",
+                        description: "Rigorous quality control processes ensuring exceptional results."
+                      }
+                    ].map((item, index) => (
+                      <div key={index} className="border-l-2 border-zinc-800 pl-6">
+                        <h4 className="text-lg text-white mb-2">{item.title}</h4>
+                        <p className="text-zinc-400">{item.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-zinc-800/30 p-8">
+                  <h3 className="text-xl font-light text-white mb-4">Contact Information</h3>
+                  <div className="space-y-4 text-zinc-400">
+                    <p>Email: contact@ribacontracting.com</p>
+                    <p>Phone: +44 (0) 123 456 7890</p>
+                    <p>Address: North West, United Kingdom</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Back to Home Button */}
-   
-
-      {/* Additional Information */}
-      <div className="mt-12 max-w-4xl mx-auto text-center">
-        <h3 className="text-2xl font-semibold">Why Choose Us?</h3>
-        <p className="text-gray-400 mt-4">
-          We provide tailored solutions with quick turnarounds. Our team is
-          committed to delivering the highest quality service for your needs.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          <div className="p-4 bg-gray-800 rounded-lg shadow">
-            <h4 className="text-lg font-bold">Tailored Solutions</h4>
-            <p className="text-gray-400 mt-2">
-              We craft personalized solutions for each client.
-            </p>
-          </div>
-          <div className="p-4 bg-gray-800 rounded-lg shadow">
-            <h4 className="text-lg font-bold">Quick Turnarounds</h4>
-            <p className="text-gray-400 mt-2">
-              Your inquiry will be handled swiftly and efficiently.
-            </p>
-          </div>
-          <div className="p-4 bg-gray-800 rounded-lg shadow">
-            <h4 className="text-lg font-bold">Expert Team</h4>
-            <p className="text-gray-400 mt-2">
-              Work with a team of seasoned professionals.
-            </p>
-          </div>
-        </div>
-      </div>
       <Footer />
     </div>
   );

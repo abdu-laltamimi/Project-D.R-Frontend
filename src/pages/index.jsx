@@ -4,7 +4,8 @@ import { Hero } from "@/components/hero/Hero";
 import Example from "@/components/NavBar";
 import { font } from "@/fonts";
 import Footer from '@/components/footer/Footer';
-
+import Carousel2 from '@/components/Utils/Carousel2';
+import Services2 from '@/components/Services2';
 // Dynamically import components
 const AboutUs = dynamic(() => import('@/components/AboutUs').then(mod => mod.AboutUs), {
   loading: () => <div>Loading...</div>,
@@ -59,10 +60,12 @@ export default function Home() {
         
         <section className="space-y-36 bg-zinc-800 pb-24">
           <AboutUs />
+          <Services2 />
           <Services />
         </section>
 
         <section>
+          <Carousel2 />
           <WhyChooseUs />
           <FinalCTA />
         </section>

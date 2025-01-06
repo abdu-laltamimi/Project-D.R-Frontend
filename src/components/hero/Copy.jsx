@@ -29,59 +29,51 @@ export const Copy = () => {
 
             </h3>
             <h1 className="text-4xl md:text-5xl font-extrabold text-left md:text-7xl">
-              Riba
+              RIBA
               <br />
               <span className="inline-block relative">
                 Contracting.
-                <div className="absolute bottom-0 left-0 h-[2px] w-full bg-white"></div>
+                {/* <div className="absolute bottom-0 left-0 h-[2px] w-full bg-white"></div> */}
               </span>
             </h1>
 
             <p className="mt-2 text-sm md:text-lg font-light text-left md:text-2xl max-w-2xl">
-            Your ultimate building solution, made for <span className="font-bold">Manchester</span>.
+           Building Excellence Across The North West
             </p>
           </div>
 
           {/* Buttons */}
-          <div className="mt-6 md:mt-8 flex flex-col md:flex-row gap-4">
+          <div className="mt-6 md:mt-8 flex w-1/3 max-w-md flex-col gap-4">
+  {/* First Button: Our Projects */}
+  <Link href="/projects">
+    <motion.div 
+      className="relative hover:text-zinc-300 flex items-center text-left justify-start px-4 py-3 text-sm md:text-lg md:text-xl font-bold bg-transparent border-white rounded cursor-pointer"
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+    >
+      Our Projects
+      <FiArrowRight className="ml-2" />
+
+    </motion.div>
+  </Link>
+
+  {/* Second Button: Book A Free Consultation */}
+  <Link href="/consultation">
+    <motion.div 
+      className="group flex items-center justify-start px-4 py-3 text-sm md:text-base font-bold text-black bg-neutral-200 rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:text-white active:bg-neutral-700 cursor-pointer"
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+    >
+      <span>Book A Free Consultation</span>
+    </motion.div>
+  </Link>
+</div>
+
             
             {/* First Button with Hover Animation */}
-            <Link href="/quote">
-              <motion.div 
-                className="group flex h-10 items-center gap-4 px-6 text-black py-3 text-base md:text-lg font-bold bg-neutral-200 transition-all duration-300 ease-in-out hover:bg-black hover:text-white active:bg-neutral-700 rounded-full cursor-pointer"
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-              >
-                <span className="rounded-full bg-black p-1 text-sm transition-colors duration-300 group-hover:bg-white">
-                  <FiArrowRight className="-translate-x-[200%] text-[0px] transition-all duration-300 group-hover:translate-x-0 group-hover:text-lg group-hover:text-black group-active:-rotate-45" />
-                </span>
-                <span>Get Started</span>
-              </motion.div>
-            </Link>
-
-            {/* Second Button with Underline Animation */}
-            <Link href="/projects">
-              <motion.div 
-                className="relative flex items-center px-6 text-base md:text-lg shadow-3xl font-bold bg-transparent rounded-none cursor-pointer"
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-              >
-                Our Projects
-                <FiArrowRight className="ml-2" />
-                <motion.div
-                  className="absolute bottom-0 left-5 h-[2px] bg-white"
-                  variants={{
-                    rest: { width: '0' },     
-                    hover: { width: '80%' }  
-                  }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                />
-              </motion.div>
-            </Link>
-
-          </div>
+          
         </div>
   
         {/* Right Section */}
