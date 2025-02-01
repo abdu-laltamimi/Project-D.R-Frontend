@@ -18,32 +18,154 @@ const Example = () => {
 };
 
 const FlyoutNav = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 150 ? true : false);
+    // Only show navbar after scrolling 150px to account for larger logo
+    if (latest > 150) {
+      setVisible(true);
+    } else if (latest < 50) { // Add buffer for smoother transition
+      setVisible(false);
+    }
   });
 
   return (
-    <nav
-      className={`fixed top-0 z-50 w-full px-6 text-neutral-900 
-      transition-all duration-300 ease-out lg:px-12
-      ${
-        scrolled
-          ? "bg-zinc-900 py-2 pt-2 text-black "
-          : "bg-zinc-900 py-2 pt-3 shadow-none text-black"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <Logo className="mr-auto w-52 h-auto" />
-        <div className="hidden gap-6 lg:flex">
-          <Links />
-          <CTAs />
+    <>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ 
+          y: visible ? 0 : -100,
+          opacity: visible ? 1 : 0
+        }}
+        transition={{ 
+          duration: 0.5,
+          ease: [0.22, 1, 0.36, 1],
+          opacity: { duration: 0.3 }
+        }}
+        className="fixed top-0 left-0 right-0 z-50"
+      >
+        {/* Backdrop with better fade */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-black/95 to-black/90 backdrop-blur-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        />
+
+        <div className="relative max-w-[1440px] mx-auto px-16">
+          <div className="flex items-center justify-between py-8">
+            {/* Logo */}
+            <Link href="/">
+              <motion.img
+                src="/refurbishLogo.png"
+                alt="RIBA"
+                className="h-24 w-auto"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              />
+            </Link>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center gap-16">
+              {LINKS.map((link) => (
+                <Link 
+                  key={link.text} 
+                  href={link.href}
+                  className="relative group"
+                >
+                  <span className="text-white/60 hover:text-white text-sm tracking-[0.2em] uppercase transition-colors">
+                    {link.text}
+                  </span>
+                  <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-white/20 group-hover:w-full transition-all duration-300" />
+                </Link>
+              ))}
+              <Link href="/consultation">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-8 py-3 bg-white text-black rounded-sm text-sm tracking-[0.2em] uppercase
+                           hover:bg-white/90 transition-colors"
+                >
+                  Consultation
+                </motion.button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsOpen(true)}
+              className="block md:hidden text-white/60 hover:text-white"
+            >
+              <FiMenu size={28} />
+            </button>
+          </div>
         </div>
-        <MobileMenu />
-      </div>
-    </nav>
+      </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed inset-0 bg-black z-50 ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      >
+        <div className="px-16 py-8 flex justify-between items-center">
+          <Link href="/">
+            <img
+              src="/refurbishLogo.png"
+              alt="RIBA"
+              className="h-24 w-auto"
+            />
+          </Link>
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="text-white/60 hover:text-white"
+          >
+            <FiX size={28} />
+          </button>
+        </div>
+        
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: isOpen ? 0 : 40, opacity: isOpen ? 1 : 0 }}
+          transition={{ delay: 0.15 }}
+          className="px-16 py-16 flex flex-col gap-12"
+        >
+          {LINKS.map((link, i) => (
+            <motion.div
+              key={link.text}
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: isOpen ? 0 : 40, opacity: isOpen ? 1 : 0 }}
+              transition={{ delay: 0.2 + i * 0.1 }}
+            >
+              <Link 
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="text-white/60 hover:text-white text-3xl font-light tracking-wider"
+              >
+                {link.text}
+              </Link>
+            </motion.div>
+          ))}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: isOpen ? 0 : 40, opacity: isOpen ? 1 : 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <Link 
+              href="/consultation"
+              onClick={() => setIsOpen(false)}
+              className="inline-block px-8 py-3 bg-white text-black 
+                       hover:bg-white/90 transition-colors text-sm tracking-[0.2em] uppercase"
+            >
+              Consultation
+            </Link>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </>
   );
 };
 

@@ -1,53 +1,168 @@
-import React from "react";
+import React from 'react';
 import Link from 'next/link';
-import Carousel from "./Utils/Carousel";
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-export const AboutUs = () => {
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8 }
+};
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const AboutSection = () => {
   return (
-    <section className="bg-zinc-800 text-white">
-      {/* Two Column Layout for Heading and Image */}
-      <div className="relative grid grid-cols-1 md:grid-cols-2 items-center h-screen overflow-hidden">
-        
-        {/* Left Column (Staggered Heading and Text) */}
-        <div className="col-span-1 z-10 px-8 py-16 max-w-2xl">
-          <h2 className="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
-            Turning Your Ideas Into Reality
-          </h2>
-          
-          <p className="mt-8 text-base font-light md:text-xl">
-            At RIBA Contracting, every project starts with you. Whether you're expanding your home, renovating a space, or starting from the ground up, we bring expertise, reliability, and care to turn your ideas into reality.
-          </p>
-          <p className="mt-4 text-base font-light md:text-xl">
-            From the first conversation to the final brick, we ensure a seamless, stress-free experience—delivering spaces that are built to inspire and built to last.
-          </p>
-          <p className="text-xl font-semibold text-zinc-200 mt-8">
-            Let's build something amazing together.
-          </p>
-          <div className="mt-6">
-            <Link href="/contact">
-              <button className="py-3 px-8 bg-white text-zinc-900 hover:bg-zinc-700 hover:text-white font-semibold text-lg rounded-full transition duration-300">
-                Get in Touch
-              </button>
-            </Link>
+    <section className="pt-24">
+      <div className="px-6 md:px-12 lg:px-24 rounded-[40px] bg-white py-12">
+        <motion.div 
+          className="max-w-[1920px] mx-auto"
+          variants={stagger}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: false }}
+        >
+          {/* Header */}
+          <div className="mb-20 max-w-4xl pt-12">
+            <motion.h2 
+              className="text-4xl md:text-5xl lg:text-7xl font-light text-zinc-900 max-w-4xl leading-tight"
+              variants={{
+                initial: { opacity: 0, y: 50 },
+                animate: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 1,
+                    ease: [0.25, 0.25, 0, 1]
+                  }
+                }
+              }}
+            >
+Bringing thoughtful design to  <span className="text-zinc-500">every space</span> you call <span className="text-zinc-900">home</span>            </motion.h2>
           </div>
-        </div>
 
-        {/* Right Column (Hand Cutout Image in Overlapping Container) */}
-        <div className="relative col-span-1">
-          <div className="absolute right-[-50px] top-1/2 transform -translate-y-1/2">
-            <img
-              src="/hand.png"
-              alt="Hand"
-              className="w-[800px] h-auto drop-shadow-xl transform hover:rotate-0 transition-transform duration-500"
-            />
-          </div>
-        </div>
+          {/* Main Content */}
+          <motion.div 
+            className="group relative overflow-hidden"
+            variants={fadeIn}
+          >
+            <div className="p-12 lg:p-16">
+              <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                {/* Left Column - Image */}
+                <motion.div 
+                  className="relative aspect-[16/9] rounded-br-3xl rounded-tl-3xl overflow-hidden"
+                  variants={{
+                    initial: { 
+                      scale: 0.8,
+                      opacity: 0,
+                      clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)'
+                    },
+                    animate: { 
+                      scale: 1,
+                      opacity: 1,
+                      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                      transition: {
+                        duration: 1.2,
+                        ease: [0.25, 0.25, 0, 1]
+                      }
+                    }
+                  }}
+                >
+                  <Image 
+                    src="/decor.jpg"
+                    alt="Architectural Excellence"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    priority
+                  />
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-zinc-900/20 to-transparent"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                  />
+                </motion.div>
+
+                {/* Right Column - Content */}
+                <motion.div 
+                  className="space-y-8"
+                  variants={stagger}
+                >
+                  <motion.div 
+                    className="space-y-6"
+                    variants={stagger}
+                  >
+                    <motion.h3 
+                      className="text-4xl font-medium text-zinc-900"
+                      variants={fadeIn}
+                    >
+                      Our Commitment to Excellence
+                    </motion.h3>
+                    <motion.p 
+                      className="text-zinc-600 leading-relaxed"
+                      variants={fadeIn}
+                    >
+                      At RIBA Contracting, every project starts with you. Whether you're expanding your home, renovating a space, or starting from the ground up, we bring <span className="text-zinc-900">expertise, reliability, and care</span> to turn your ideas into reality.
+                    </motion.p>
+                    <motion.p 
+                      className="text-zinc-600 leading-relaxed"
+                      variants={fadeIn}
+                    >
+                      From the first conversation to the final brick, we ensure a seamless, <span className="text-zinc-900">stress-free experience</span>—delivering spaces that are built to inspire and built to last.
+                    </motion.p>
+                    <motion.div 
+                      className="pt-8"
+                      variants={fadeIn}
+                    >
+                      <Link href="/about-us">
+                        <motion.button 
+                          className="group inline-flex items-center gap-4"
+                          whileHover={{ x: 10 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <motion.span 
+                            className="text-sm text-zinc-900 tracking-wide"
+                            whileHover={{ x: 2 }}
+                          >
+                            Learn More
+                          </motion.span>
+                          <motion.span 
+                            className="text-zinc-900"
+                            whileHover={{ x: 5 }}
+                          >
+                            →
+                          </motion.span>
+                        </motion.button>
+                      </Link>
+                    </motion.div>
+                    <motion.div 
+                      className="h-[1px] w-full bg-gradient-to-r from-zinc-200 to-transparent"
+                      variants={{
+                        initial: { scaleX: 0, originX: 0 },
+                        animate: { 
+                          scaleX: 1,
+                          transition: {
+                            duration: 0.8,
+                            delay: 0.5
+                          }
+                        }
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
-
-      {/* Stats Section */}
-      <Carousel />
     </section>
   );
 };
 
-export default AboutUs;
+export default AboutSection;

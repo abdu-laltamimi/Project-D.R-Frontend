@@ -5,7 +5,14 @@ const config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        display: ['Clash Display', 'sans-serif'],
+        serif: ['Fraunces', 'serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+    },
   },
   plugins: [],
 };

@@ -6,11 +6,8 @@ import { font } from "@/fonts";
 import Footer from '@/components/footer/Footer';
 import Carousel2 from '@/components/Utils/Carousel2';
 import Services2 from '@/components/Services2';
-// Dynamically import components
-const AboutUs = dynamic(() => import('@/components/AboutUs').then(mod => mod.AboutUs), {
-  loading: () => <div>Loading...</div>,
-  ssr: false
-});
+import { Booking } from '@/components/email-capture/Booking';
+import AboutSection from '@/components/AboutUs';
 
 const Services = dynamic(() => import('@/components/email-capture/EmailCapture').then(mod => mod.Services), {
   loading: () => <div>Loading...</div>,
@@ -52,27 +49,23 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" /> */}
       </Head>
 
-      <main className={`${font.className} min-h-screen  bg-zinc-800`}>
+      <main className={`${font.className} min-h-screen bg-white`}>
         <header>
-          <Example />
+          {/* <Example /> */}
           <Hero />
         </header>
-        
-        <section className="space-y-36 bg-zinc-800 pb-24">
-          <AboutUs />
+          <AboutSection />
+          <Booking />
           <Services2 />
-          <Services />
-        </section>
+          {/* <Services /> */}
 
-        <section>
           <Carousel2 />
           <WhyChooseUs />
-          <FinalCTA />
-        </section>
+          {/* <FinalCTA /> */}
 
-        <section className="max-w-screen-lg mx-auto bg-zinc-800 px-6">
+
+
           <RecentProjects />
-        </section>
         <footer>
           
           <Footer />
