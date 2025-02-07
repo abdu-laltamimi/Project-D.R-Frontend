@@ -2,164 +2,151 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8 }
-};
-
-const stagger = {
-  animate: {
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
+import { FiArrowRight, FiCoffee, FiHeart, FiUsers } from "react-icons/fi";
 
 const AboutSection = () => {
+  const menu = {
+    drinks: "/drinkMenu.pdf",
+    food: "/foodMenu.pdf",
+  }
   return (
-    <section className="pt-24">
-      <div className="px-6 md:px-12 lg:px-24 rounded-[40px] bg-white py-12">
+    <section className="py-32 bg-[#0C0C0C] text-white">
+      <div className="max-w-[1400px] mx-auto px-6">
+        {/* Header */}
         <motion.div 
-          className="max-w-[1920px] mx-auto"
-          variants={stagger}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: false }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-24"
         >
-          {/* Header */}
-          <div className="mb-20 max-w-4xl pt-12">
-            <motion.h2 
-              className="text-4xl md:text-5xl lg:text-7xl font-light text-zinc-900 max-w-4xl leading-tight"
-              variants={{
-                initial: { opacity: 0, y: 50 },
-                animate: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: {
-                    duration: 1,
-                    ease: [0.25, 0.25, 0, 1]
-                  }
-                }
-              }}
-            >
-Bringing thoughtful design to  <span className="text-zinc-500">every space</span> you call <span className="text-zinc-900">home</span>            </motion.h2>
-          </div>
-
-          {/* Main Content */}
-          <motion.div 
-            className="group relative overflow-hidden"
-            variants={fadeIn}
+          <motion.h2 
+            className="text-5xl md:text-7xl font-light"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="p-12 lg:p-16">
-              <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                {/* Left Column - Image */}
-                <motion.div 
-                  className="relative aspect-[16/9] rounded-br-3xl rounded-tl-3xl overflow-hidden"
-                  variants={{
-                    initial: { 
-                      scale: 0.8,
-                      opacity: 0,
-                      clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)'
-                    },
-                    animate: { 
-                      scale: 1,
-                      opacity: 1,
-                      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-                      transition: {
-                        duration: 1.2,
-                        ease: [0.25, 0.25, 0, 1]
-                      }
-                    }
-                  }}
-                >
-                  <Image 
-                    src="/decor.jpg"
-                    alt="Architectural Excellence"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-zinc-900/20 to-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                  />
-                </motion.div>
+            Our Story
+          </motion.h2>
+        </motion.div>
 
-                {/* Right Column - Content */}
-                <motion.div 
-                  className="space-y-8"
-                  variants={stagger}
-                >
-                  <motion.div 
-                    className="space-y-6"
-                    variants={stagger}
-                  >
-                    <motion.h3 
-                      className="text-4xl font-medium text-zinc-900"
-                      variants={fadeIn}
-                    >
-                      Our Commitment to Excellence
-                    </motion.h3>
-                    <motion.p 
-                      className="text-zinc-600 leading-relaxed"
-                      variants={fadeIn}
-                    >
-                      At RIBA Contracting, every project starts with you. Whether you're expanding your home, renovating a space, or starting from the ground up, we bring <span className="text-zinc-900">expertise, reliability, and care</span> to turn your ideas into reality.
-                    </motion.p>
-                    <motion.p 
-                      className="text-zinc-600 leading-relaxed"
-                      variants={fadeIn}
-                    >
-                      From the first conversation to the final brick, we ensure a seamless, <span className="text-zinc-900">stress-free experience</span>—delivering spaces that are built to inspire and built to last.
-                    </motion.p>
-                    <motion.div 
-                      className="pt-8"
-                      variants={fadeIn}
-                    >
-                      <Link href="/about-us">
-                        <motion.button 
-                          className="group inline-flex items-center gap-4"
-                          whileHover={{ x: 10 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <motion.span 
-                            className="text-sm text-zinc-900 tracking-wide"
-                            whileHover={{ x: 2 }}
-                          >
-                            Learn More
-                          </motion.span>
-                          <motion.span 
-                            className="text-zinc-900"
-                            whileHover={{ x: 5 }}
-                          >
-                            →
-                          </motion.span>
-                        </motion.button>
-                      </Link>
-                    </motion.div>
-                    <motion.div 
-                      className="h-[1px] w-full bg-gradient-to-r from-zinc-200 to-transparent"
-                      variants={{
-                        initial: { scaleX: 0, originX: 0 },
-                        animate: { 
-                          scaleX: 1,
-                          transition: {
-                            duration: 0.8,
-                            delay: 0.5
-                          }
-                        }
-                      }}
-                    />
-                  </motion.div>
-                </motion.div>
-              </div>
+
+        <div className="grid md:grid-cols-12 gap-16 mb-32">
+          {/* Left Column */}
+          <motion.div 
+            className="md:col-span-5"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <div className="sticky top-32">
+              <p className="text-xl md:text-2xl text-neutral-300 leading-relaxed mb-8">
+                More than just a café, we're a sanctuary where every cup tells a story and every visit becomes a cherished memory.
+              </p>
+              <div className="h-[1px] w-16 bg-neutral-700" />
             </div>
           </motion.div>
-        </motion.div>
+
+          {/* Right Column */}
+          <motion.div 
+            className="md:col-span-7 space-y-24"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            {/* Feature Image */}
+            <motion.div 
+              className="aspect-[16/9] relative overflow-hidden rounded-sm"
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <Image
+                src="/cup.jpeg"
+                alt="Café ambience"
+                fill
+                className="object-cover"
+                priority
+              />
+            </motion.div>
+
+            {/* Menu Links */}
+            <div className="grid gap-12">
+
+                <motion.div 
+                  onClick={() => window.open(menu.drinks, "_blank")}
+                  className="group flex items-center justify-between cursor-pointer border-b border-neutral-800 pb-8"
+                  whileHover={{ x: 20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div>
+                    <h3 className="text-2xl font-light mb-2">Drinks Menu</h3>
+                    <p className="text-neutral-400">Artisanal coffee & specialty beverages</p>
+                  </div>
+                  <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
+                </motion.div>
+
+
+              {/* Food Menu */}
+
+                <motion.div 
+                  onClick={() => window.open(menu.food, "_blank")}
+                  className="group flex items-center justify-between cursor-pointer border-b border-neutral-800 pb-8"
+                  whileHover={{ x: 20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div>
+                    <h3 className="text-2xl font-light mb-2">Food Menu</h3>
+                    <p className="text-neutral-400">Fresh pastries & seasonal dishes</p>
+                  </div>
+                  <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
+                </motion.div>
+
+            </div>
+
+            {/* Replace Additional Content with Values Section */}
+            <motion.div 
+              className="grid md:grid-cols-3 gap-8 pt-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.div 
+                className="group p-6  hover:bg-white/5 transition-all duration-500"
+
+              >
+                <FiCoffee className="text-2xl text-neutral-400 mb-6 group-hover:text-white transition-colors" />
+                <h4 className="text-lg font-light mb-3">Craft & Quality</h4>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Every bean is carefully selected and roasted to perfection in small batches.
+                </p>
+              </motion.div>
+
+              <motion.div 
+                className="group p-6  hover:bg-white/5 transition-all duration-500"
+              >
+                <FiHeart className="text-2xl text-neutral-400 mb-6 group-hover:text-white transition-colors" />
+                <h4 className="text-lg font-light mb-3">Passion & Care</h4>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Our dedication to the perfect cup drives everything we do.
+                </p>
+              </motion.div>
+
+              <motion.div 
+                className="group p-6  hover:bg-white/5 transition-all duration-500"
+              >
+                <FiUsers className="text-2xl text-neutral-400 mb-6 group-hover:text-white transition-colors" />
+                <h4 className="text-lg font-light mb-3">Community</h4>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Creating a space where connections flourish over great coffee.
+                </p>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
