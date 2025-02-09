@@ -6,7 +6,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 const Services2 = () => {
   return (
-    <section className="relative py-32 rounded-[40px] mx-6 sm:mx-0 md:mx-2 lg:mx-7 bg-[#0C0C0C] overflow-hidden">
+    <section className="relative py-32 rounded-lg md:rounded-3xl mx-0 sm:mx-0 md:mx-2 lg:mx-7 bg-[#0C0C0C] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

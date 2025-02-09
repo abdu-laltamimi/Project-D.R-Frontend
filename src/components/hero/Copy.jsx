@@ -75,10 +75,10 @@ export const Copy = () => {
 
             {/* Navigation */}
             <div className="flex items-center gap-4 md:gap-18 pr-8">
-              <Link href="https://mymaternalhub.co.uk/survey/" className="text-white text-md tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2">
+              <Link href="https://mymaternalhub.co.uk/survey/" className="text-white hidden md:block text-md tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2">
                 MidWife Survey
               </Link>
-              <a href="mailto:midwife@myindependentmidwife.co.uk" className="text-white text-md tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2 block ">
+              <a href="mailto:midwife@myindependentmidwife.co.uk" className="text-white text-md hidden md:block tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2 block ">
                 Contact Us
               </a>
             </div>

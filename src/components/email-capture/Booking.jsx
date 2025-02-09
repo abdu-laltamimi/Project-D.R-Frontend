@@ -13,7 +13,7 @@ const FAQItem = ({ question, answer }) => {
       >
         <span className="text-2xl md:text-3xl font-light">{question}</span>
         <motion.div
-          className={`w-10 h-10 rounded-full border flex items-center justify-center transition-colors duration-300 ${
+          className={`w-10 h-10 rounded-full md:rounded-full border flex items-center justify-center transition-colors duration-300 ${
             isOpen ? 'bg-[#6ca3a5] border-[#6ca3a5]' : 'border-neutral-200 group-hover:border-neutral-400'
           }`}
           animate={{ rotate: isOpen ? 180 : 0 }}
