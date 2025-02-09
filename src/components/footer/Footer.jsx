@@ -5,7 +5,7 @@ import { FaTiktok } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0C0C0C] text-white">
+    <footer className="bg-[#0C0C0C] text-white border-t rounded-t-3xl md:rounded-t-sm sm:rounded-t-none border-neutral-800">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Main Content */}
         <div className="py-32">
@@ -18,7 +18,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-light mb-8">
-              Come visit us at our café in the heart of Bramhall.
+              Start Your Birth Journey Today
             </h2>
           </motion.div>
 
@@ -34,14 +34,14 @@ const Footer = () => {
               <h3 className="text-sm tracking-widest text-neutral-400 mb-6">VISIT US</h3>
               <div className="space-y-6 text-lg font-light">
                 <div>
-                  <p>22 Bramhall Ln S</p>
-                  <p>Stockport</p>
-                  <p>SK7 1AB</p>
+                  <p>123 Midwifery Lane</p>
+                  <p>Birthing Town</p>
+                  <p>BT1 2AB</p>
                 </div>
                 <div>
-                  <p>Mon - Fri: 8am - 5pm</p>
-                  <p>Sat: 9am - 5pm</p>
-                  <p>Sun: 9am - 4pm</p>
+                  <p>Mon - Fri: 9am - 6pm</p>
+                  <p>Sat: 10am - 4pm</p>
+                  <p>Sun: Closed</p>
                 </div>
               </div>
             </motion.div>
@@ -56,7 +56,7 @@ const Footer = () => {
               <h3 className="text-sm tracking-widest text-neutral-400 mb-6">CONNECT</h3>
               <div className="space-y-4">
                 <motion.a 
-                  href="https://www.instagram.com/_cafevalentino/" 
+                  href="https://www.instagram.com/midwifery_service/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="block text-lg font-light hover:text-neutral-400 transition-colors duration-300"
@@ -65,7 +65,7 @@ const Footer = () => {
                   Instagram
                 </motion.a>
                 <motion.a 
-                  href="https://www.tiktok.com/@_cafevalentino" 
+                  href="https://www.tiktok.com/@midwifery_service" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="block text-lg font-light hover:text-neutral-400 transition-colors duration-300"
@@ -85,7 +85,7 @@ const Footer = () => {
             >
               <h3 className="text-sm tracking-widest text-neutral-400 mb-6">NEWSLETTER</h3>
               <p className="text-lg font-light mb-6">
-                Subscribe for café updates and stories.
+                Subscribe for midwifery updates and birthing stories.
               </p>
               <form className="relative">
                 <input
@@ -101,7 +101,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="py-8 border-t border-neutral-800">
           <p className="text-sm text-neutral-400 text-center">
-            © {new Date().getFullYear()} Café Valentino. All rights reserved.
+            © {new Date().getFullYear()} My Meternal Hub. All rights reserved.
           </p>
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function Home() {
     <>
 
 
-      <main className={`${font.className} min-h-screen bg-white`}>
+      <main className={`${font.className} min-h-screen bg-[#FFFAFA]`}>
 
         <Copy />
           <AboutSection />

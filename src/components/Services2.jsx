@@ -6,11 +6,11 @@ import { FiArrowRight } from "react-icons/fi";
 
 const Services2 = () => {
   return (
-    <section className="relative py-32 bg-[#0C0C0C] overflow-hidden">
+    <section className="relative py-32 rounded-[40px] mx-6 sm:mx-0 md:mx-2 lg:mx-7 bg-[#0C0C0C] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hand.jpeg"
+          src="/cta.jpeg"
           alt="Food background"
           fill
           className="object-cover opacity-20"
@@ -29,20 +29,20 @@ const Services2 = () => {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-7xl md:text-9xl font-extralight text-white mb-6 tracking-tight"
+            className="text-6xl md:text-8xl font-extralight text-white mb-2 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Ready to
+            Ready to Start Your
           </motion.h2>
           <motion.h2 
-            className="text-7xl md:text-9xl font-light text-white tracking-tight"
+            className="text-6xl md:text-8xl font-light text-[#c8a9b9] tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            order?
+            Journey?
           </motion.h2>
         </motion.div>
 
@@ -54,7 +54,7 @@ const Services2 = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           {/* Uber Eats */}
-          <Link href="https://www.ubereats.com/gb/store/cafe-valentino/6G7hbfk8WqOdVI3Dnvtopg?srsltid=AfmBOoqR1LQG3cisCaP_b5hapGH748bXTx3M7xzm5XfeKLFqfW7ppXnB" target="_blank" rel="noopener noreferrer">
+          <Link href="/" target="_blank" rel="noopener noreferrer">
             <motion.div 
               className="group relative overflow-hidden bg-white text-black p-8 rounded-sm cursor-pointer"
               whileHover={{ y: -5 }}
@@ -62,7 +62,7 @@ const Services2 = () => {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-2xl font-light">Uber Eats</h3>
+                  <h3 className="text-2xl font-light">Book a Midwife</h3>
                 </div>
                 <FiArrowRight className="text-2xl transform group-hover:translate-x-1 transition-transform" />
               </div>
@@ -70,7 +70,7 @@ const Services2 = () => {
           </Link>
 
           {/* Just Eat */}
-          <Link href="https://www.just-eat.co.uk/restaurants-cafe-valentino-stockport/menu" target="_blank" rel="noopener noreferrer">
+          <Link href="/" target="_blank" rel="noopener noreferrer">
             <motion.div 
               className="group relative overflow-hidden border border-neutral-800 text-white p-8 rounded-sm cursor-pointer"
               whileHover={{ y: -5 }}
@@ -78,7 +78,7 @@ const Services2 = () => {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-2xl font-light">Just Eat</h3>
+                  <h3 className="text-2xl font-light">Book a Call</h3>
                 </div>
                 <FiArrowRight className="text-2xl transform group-hover:translate-x-1  transition-transform" />
               </div>

@@ -14,7 +14,7 @@ const FAQItem = ({ question, answer }) => {
         <span className="text-2xl md:text-3xl font-light">{question}</span>
         <motion.div
           className={`w-10 h-10 rounded-full border flex items-center justify-center transition-colors duration-300 ${
-            isOpen ? 'bg-black border-black' : 'border-neutral-200 group-hover:border-neutral-400'
+            isOpen ? 'bg-[#6ca3a5] border-[#6ca3a5]' : 'border-neutral-200 group-hover:border-neutral-400'
           }`}
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
@@ -54,20 +54,20 @@ const NewsletterCTA = () => {
 
   const faqItems = [
     {
-      question: "Can I reserve a table?",
-      answer: "We operate on a walk-in basis at all locations, we aim to get people seated as quickly as possible."
+      question: "What services do midwives provide?",
+      answer: "Midwives offer comprehensive care during pregnancy, labor, and postpartum, including prenatal check-ups, labor support, and breastfeeding assistance."
     },
     {
-      question: "Do you offer catering services?",
-      answer: "Yes, we provide catering for events of all sizes. Contact our team for a custom quote."
+      question: "Can I have a home birth with a midwife?",
+      answer: "Yes, many midwives provide home birth services. It's important to discuss your birth plan and preferences during your consultations."
     },
     {
-      question: "What are your opening hours?",
-      answer: "We're open Monday to Friday 8am-5pm, Saturday 9am-4pm and Sunday 9am-4pm."
+      question: "What if I have a high-risk pregnancy?",
+      answer: "Midwives can work alongside obstetricians to provide care for high-risk pregnancies, ensuring you receive the best support possible."
     },
     {
-      question: "Do you have vegetarian options?",
-      answer: "We offer a wide range of vegetarian and vegan dishes on our menu."
+      question: "Do midwives support natural childbirth?",
+      answer: "Absolutely! Midwives are trained to support natural childbirth and can provide various pain management techniques."
     }
   ];
 
@@ -91,7 +91,7 @@ const NewsletterCTA = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                NEWSLETTER
+                SURVEY
               </motion.p>
               <motion.h2 
                 className="text-4xl md:text-5xl font-light mb-6"
@@ -99,16 +99,14 @@ const NewsletterCTA = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Want to recieve new updates?
-              </motion.h2>
+Interested in getting to know more?              </motion.h2>
               <motion.p 
                 className="text-neutral-600 leading-relaxed"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Subscribe for updates on <span className="font-bold">seasonal menus</span>, <span className="font-bold">special events</span>, and <span className="font-bold">café culture stories</span>.
-              </motion.p>
+We'd love to get to know more about your post-natal experiences. Take the survey now!              </motion.p>
             </div>
           </motion.div>
 
@@ -154,8 +152,7 @@ const NewsletterCTA = () => {
                   // whileHover={{ x: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span>SUBSCRIBE</span>
-                  {/* <FiArrowUpRight className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /> */}
+                  <span>SUBMIT</span>
                 </motion.button>
               </form>
             )}
@@ -202,8 +199,8 @@ const NewsletterCTA = () => {
             >
               <p className="text-neutral-600 mb-2 text-lg">Still have questions?</p>
               <motion.a
-                href="mailto:cafevalentinobramhall@gmail.com"
-                className="text-lg font-light text-black border-b-2 border-transparent hover:border-black transition-all duration-300"
+                href="mailto:midwife@myindependentmidwife.co.uk"
+                className="text-lg font-light text-black border-b-2 border-transparent hover:border-[#6ca3a5] transition-all duration-300"
                 transition={{ duration: 0.3 }}
               >
                 Reach out to us

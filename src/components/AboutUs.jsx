@@ -10,7 +10,7 @@ const AboutSection = () => {
     food: "/foodMenu.pdf",
   }
   return (
-    <section className="py-32 bg-[#0C0C0C] text-white">
+    <section className="py-32 bg-[#FFFAFA] text-black">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Header */}
         <motion.div 
@@ -26,10 +26,9 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Our Story
+            What We <span className="text-[#c8a9b9] font-extralight">Promise</span>
           </motion.h2>
         </motion.div>
-
 
         <div className="grid md:grid-cols-12 gap-16 mb-32">
           {/* Left Column */}
@@ -41,10 +40,10 @@ const AboutSection = () => {
             viewport={{ once: true }}
           >
             <div className="sticky top-32">
-              <p className="text-xl md:text-2xl text-neutral-300 leading-relaxed mb-8">
-                More than just a café, we're a sanctuary where every cup tells a story and every visit becomes a cherished memory.
+              <p className="text-xl md:text-2xl text-neutral-600 leading-relaxed mb-8">
+              Private Midwife and Post-natal care at your doorstep
               </p>
-              <div className="h-[1px] w-16 bg-neutral-700" />
+              <div className="h-[1px] w-16 bg-neutral-300" />
             </div>
           </motion.div>
 
@@ -55,96 +54,56 @@ const AboutSection = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            {/* Feature Image */}
-            <motion.div 
-              className="aspect-[16/9] relative overflow-hidden rounded-sm"
-              initial={{ scale: 0.95, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-            >
-              <Image
-                src="/cup.jpeg"
-                alt="Café ambience"
-                fill
-                className="object-cover"
-                priority
-              />
-            </motion.div>
-
-            {/* Menu Links */}
+            {/* Service Items */}
             <div className="grid gap-12">
+              <motion.div 
+                className="group flex items-center justify-between cursor-pointer border-b border-neutral-200 pb-8"
+                whileHover={{ x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div>
+                  <h3 className="text-2xl font-normal mb-2">Midwife at Your Doorstep</h3>
+                  <p className="text-neutral-600">Personalized home visits and dedicated support throughout your pregnancy journey</p>
+                </div>
+                <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
+              </motion.div>
 
-                <motion.div 
-                  onClick={() => window.open(menu.drinks, "_blank")}
-                  className="group flex items-center justify-between cursor-pointer border-b border-neutral-800 pb-8"
-                  whileHover={{ x: 20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div>
-                    <h3 className="text-2xl font-light mb-2">Drinks Menu</h3>
-                    <p className="text-neutral-400">Artisanal coffee & specialty beverages</p>
-                  </div>
-                  <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
-                </motion.div>
+              <motion.div 
+                className="group flex items-center justify-between cursor-pointer border-b border-neutral-200 pb-8"
+                whileHover={{ x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div>
+                  <h3 className="text-2xl font-normal mb-2">Feeding, Bathing & Sleep Support</h3>
+                  <p className="text-neutral-600">Expert guidance for essential newborn care and establishing healthy routines</p>
+                </div>
+                <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
+              </motion.div>
 
+              <motion.div 
+                className="group flex items-center justify-between cursor-pointer border-b border-neutral-200 pb-8"
+                whileHover={{ x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div>
+                  <h3 className="text-2xl font-normal mb-2">Mother's Wellbeing</h3>
+                  <p className="text-neutral-600">Holistic support for physical and emotional health during pregnancy and postpartum</p>
+                </div>
+                <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
+              </motion.div>
 
-              {/* Food Menu */}
-
-                <motion.div 
-                  onClick={() => window.open(menu.food, "_blank")}
-                  className="group flex items-center justify-between cursor-pointer border-b border-neutral-800 pb-8"
-                  whileHover={{ x: 20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div>
-                    <h3 className="text-2xl font-light mb-2">Food Menu</h3>
-                    <p className="text-neutral-400">Fresh pastries & seasonal dishes</p>
-                  </div>
-                  <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
-                </motion.div>
-
+              <motion.div 
+                className="group flex items-center justify-between cursor-pointer border-b border-neutral-200 pb-8"
+                whileHover={{ x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div>
+                  <h3 className="text-2xl font-normal mb-2">Infant Development Monitoring</h3>
+                  <p className="text-neutral-600">Professional tracking and guidance for your baby's growth and developmental milestones</p>
+                </div>
+                <FiArrowRight className="text-2xl transform group-hover:translate-x-2 transition-transform" />
+              </motion.div>
             </div>
-
-            {/* Replace Additional Content with Values Section */}
-            <motion.div 
-              className="grid md:grid-cols-3 gap-8 pt-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <motion.div 
-                className="group p-6  hover:bg-white/5 transition-all duration-500"
-
-              >
-                <FiCoffee className="text-2xl text-neutral-400 mb-6 group-hover:text-white transition-colors" />
-                <h4 className="text-lg font-light mb-3">Craft & Quality</h4>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Every bean is carefully selected and roasted to perfection in small batches.
-                </p>
-              </motion.div>
-
-              <motion.div 
-                className="group p-6  hover:bg-white/5 transition-all duration-500"
-              >
-                <FiHeart className="text-2xl text-neutral-400 mb-6 group-hover:text-white transition-colors" />
-                <h4 className="text-lg font-light mb-3">Passion & Care</h4>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Our dedication to the perfect cup drives everything we do.
-                </p>
-              </motion.div>
-
-              <motion.div 
-                className="group p-6  hover:bg-white/5 transition-all duration-500"
-              >
-                <FiUsers className="text-2xl text-neutral-400 mb-6 group-hover:text-white transition-colors" />
-                <h4 className="text-lg font-light mb-3">Community</h4>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Creating a space where connections flourish over great coffee.
-                </p>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
