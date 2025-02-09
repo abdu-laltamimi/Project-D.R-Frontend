@@ -173,7 +173,7 @@ export const Copy = () => {
                 custom={1}
               >
                 <Link href="/menu">
-                  <button className="group flex items-center gap-4 text-white border border-neutral-700 px-8 py-4 hover:bg-white/5 transition-colors">
+                  <button className="group flex inline-flex items-center gap-4 text-white border border-neutral-700 px-8 py-4 hover:bg-white/5 transition-colors">
                     <span className="text-sm tracking-wider">EXPLORE OUR MENU</span>
                     {/* <FiArrowUpRight className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /> */}
                   </button>
