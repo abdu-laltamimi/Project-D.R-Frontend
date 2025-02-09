@@ -92,8 +92,8 @@ export const Copy = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.7 }}
           transition={{ duration: 1.5 }}
-          className="absolute inset-0 bg-gradient-to-b from-black via-black/30 to-black z-10" 
-        />
+          className="absolute inset-0 bg-gradient-to-b from-black via-black/30 to-black/30 z-10" 
+          />
         <video
           ref={videoRef}
           autoPlay
@@ -173,7 +173,7 @@ export const Copy = () => {
                 custom={1}
               >
                 <Link href="https://www.myindependentmidwife.co.uk/book-a-discovery-call" target="_blank" rel="noopener noreferrer">
-                  <button className="group flex inline-flex items-center gap-4 text-white border border-neutral-700 px-8 py-4 hover:bg-white/5 transition-colors">
+                  <button className="group flex inline-flex items-center gap-4 text-white border border-neutral-700 px-8 py-4 hover:bg-white/10 transition-colors">
                     <span className="text-sm tracking-wider">Begin Your Birth Journey</span>
                   </button>
                 </Link>
