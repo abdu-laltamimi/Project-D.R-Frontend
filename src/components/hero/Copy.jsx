@@ -92,7 +92,7 @@ export const Copy = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.7 }}
           transition={{ duration: 1.5 }}
-          className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black z-10" 
+          className="absolute inset-0 bg-gradient-to-b from-black via-black/30 to-black z-10" 
         />
         <video
           ref={videoRef}
@@ -186,9 +186,9 @@ export const Copy = () => {
               initial="hidden"
               animate="visible"
               custom={1.2}
-              className="hidden md:block"
+              className=" hidden md:block"
             >
-              <div className="border border-neutral-700 p-16 backdrop-blur-sm bg-black/20">
+              <div className="border border-neutral-700 p-16 backdrop-blur-md bg-black/20">
                 <div className="space-y-12">
                   <div>
                     <p className="text-neutral-400 text-xs tracking-[0.2em] mb-4">RECOGNITION</p>
