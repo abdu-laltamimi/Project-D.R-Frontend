@@ -116,7 +116,7 @@ export const Copy = () => {
       {/* Main Content */}
       <motion.div 
         style={{ y }}
-        className="relative z-20 h-full flex items-center justify-center px-6"
+        className="relative z-20 h-full flex flex-col items-center justify-center px-6"
       >
         <div className="max-w-[1400px] w-full mx-auto">
           <div className="grid md:grid-cols-2 gap-24 items-center">

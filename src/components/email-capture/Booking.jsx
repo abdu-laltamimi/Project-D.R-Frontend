@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowUpRight, FiChevronUp } from "react-icons/fi";
+import Services2 from '@/components/Services2';
 
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-t border-neutral-200 last:border-b">
+    <div className="border-t border-neutral-200 bg-white last:border-b">
       <motion.button
         className="w-full py-8 flex items-center justify-between text-left group"
         onClick={() => setIsOpen(!isOpen)}
@@ -72,7 +73,7 @@ const NewsletterCTA = () => {
   ];
 
   return (
-    <section className="bg-white text-black">
+    <section className="bg-[#FFFAFA] text-black">
       {/* Newsletter Section */}
       <div className="py-32 max-w-[1400px] mx-auto px-6">
         <div className="grid md:grid-cols-12 gap-16">
@@ -159,7 +160,7 @@ We'd love to get to know more about your post-natal experiences. Take the survey
           </motion.div>
         </div>
       </div>
-
+              <Services2 />
       {/* FAQ Section */}
       <div className="py-32 bg-white ">
         <div className="max-w-[1400px] mx-auto px-6">

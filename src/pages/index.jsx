@@ -18,7 +18,7 @@ export default function Home() {
 
         <Copy />
           <AboutSection />
-          <Services2 />
+          {/* <Services2 /> */}
           <NewsletterCTA />
    
         <footer>
