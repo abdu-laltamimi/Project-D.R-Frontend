@@ -128,7 +128,7 @@ export const Copy = () => {
                   initial="hidden"
                   animate="visible"
                   custom={0.2}
-                  className="text-neutral-300 tracking-[0.2em] text-xs mb-8"
+                  className="text-neutral-300 tracking-[0.2em] pt-4 text-xs mb-8"
                 >
                   EST. 2022
                 </motion.p>
