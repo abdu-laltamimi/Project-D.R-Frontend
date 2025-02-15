@@ -35,7 +35,7 @@ const Careers = () => {
       {/* Form Container */}
       <div className="relative z-10 flex items-center h-full">
         <motion.div
-          className="bg-white rounded-2xl bg-opacity-10 backdrop-blur-[10px] p-8 md:p-10 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[35%] ml-6 md:mx-auto shadow-2xl"
+          className="bg-white rounded-2xl bg-opacity-10 backdrop-blur-[3px] p-8 md:p-8 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[35%] ml-6 md:mx-auto shadow-2xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}

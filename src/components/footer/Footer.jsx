@@ -5,7 +5,7 @@ import { FaTiktok } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0C0C0C] text-white border-t rounded-t-3xl md:rounded-t-sm sm:rounded-t-none border-neutral-800">
+    <footer className="bg-[#0C0C0C] text-white border-neutral-800">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Main Content */}
         <div className="py-32">
