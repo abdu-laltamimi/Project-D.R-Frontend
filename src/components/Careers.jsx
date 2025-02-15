@@ -35,14 +35,14 @@ const Careers = () => {
       {/* Form Container */}
       <div className="relative z-10 flex items-center h-full">
         <motion.div
-          className="bg-white rounded-2xl bg-opacity-10 backdrop-blur-[3px] p-8 md:p-8 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[35%] ml-6 md:mx-auto shadow-2xl"
+          className="bg-white rounded-2xl bg-opacity-10 backdrop-blur-[3px] p-8 md:p-8 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[35%]  mx-auto md:mx-auto shadow-2xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInLeft}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`${nunito.className} text-3xl font-semibold md:text-white text-[#003845] mb-4`}>
+          <h2 className={`${nunito.className} text-3xl font-bold md:text-white text-[#003845] mb-4`}>
             Join Our Team
           </h2>
           <p className="md:text-neutral-200 text-black text-md mb-6">

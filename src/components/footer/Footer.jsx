@@ -2,7 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiInstagram, FiMail } from 'react-icons/fi';
 import { FaTiktok } from 'react-icons/fa';
+import { Nunito } from 'next/font/google';
 
+const nunito = Nunito({
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900', '1000'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 const Footer = () => {
   return (
     <footer className="bg-[#0C0C0C] text-white border-neutral-800">
@@ -17,8 +23,8 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-light mb-8">
-              Start Your Birth Journey Today
+            <h2 className={`${nunito.className} text-4xl md:text-5xl font-semibold md:mb-8 mb-4`}>
+             <span className="text-[#C8A9B9]">Start </span>Your Birth Journey <span className="text-[#6ca3a5]">Today.</span>
             </h2>
           </motion.div>
 
