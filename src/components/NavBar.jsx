@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { FiMenu, FiX } from 'react-icons/fi';
-
+import Image from 'next/image';
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -25,88 +25,31 @@ const NavBar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 mix-blend-difference">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <nav className="flex items-center h-24">
+      <motion.nav 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        className="fixed top-0 left-0 right-0 z-50 px-6 bg-white"
+      >
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex items-center justify-between h-auto">
             {/* Logo */}
-            <Link 
-              href="/"
-              className="text-white text-xl tracking-wide hover:opacity-70 transition-opacity mr-16"
-            >
-              RIBA
+            <Link href="/" className="text-white text-xl tracking-wide hover:opacity-70 transition-opacity">
+              <Image src="/logo.svg" alt="Logo" width={200} height={200} />
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.path}
-                  className="relative text-white text-sm tracking-wider font-light hover:opacity-70 transition-opacity"
-                >
-                  <span>{item.name.toUpperCase()}</span>
-                  {router.pathname === item.path && (
-                    <motion.div
-                      layoutId="underline"
-                      className="absolute left-0 top-full h-px w-full bg-white"
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                </Link>
-              ))}
+            {/* Navigation */}
+            <div className="flex items-center gap-4 md:flex-row md:gap-18 md:pr-8">
+              <Link href="https://mymaternalhub.co.uk/survey/" className="text-white hidden md:block text-md tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2">
+                MidWife Survey
+              </Link>
+              <a href="mailto:midwife@myindependentmidwife.co.uk" className="text-white text-md md:block tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2 block ">
+                Contact Us
+              </a>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden ml-auto text-white text-2xl"
-            >
-              {isOpen ? <FiX /> : <FiMenu />}
-            </button>
-          </nav>
+          </div>
         </div>
-      </header>
-
-      {/* Fullscreen Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="fixed inset-0 z-40 bg-black"
-          >
-            <div className="h-full flex items-center justify-center">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="space-y-8 text-center"
-              >
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    <Link
-                      href={item.path}
-                      onClick={() => setIsOpen(false)}
-                      className="block text-3xl text-white font-light tracking-wider hover:opacity-70 transition-opacity"
-                    >
-                      {item.name.toUpperCase()}
-                    </Link>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </motion.nav>
     </>
   );
 };
