@@ -11,6 +11,7 @@ import Head from 'next/head';
 import Steps from '@/components/Steps';
 import Calendly from '@/components/Calendly';
 import Careers from '@/components/Careers';
+import OurPlans from '@/components/OurPlans';
 export default function Home() {
   return (
       <>
@@ -31,6 +32,7 @@ export default function Home() {
           <AboutSection />
           {/* <Services2 /> */}
           <Steps />
+          <OurPlans />
           <NewsletterCTA />
           <Calendly />
           <Careers />

@@ -46,7 +46,7 @@ const Careers = () => {
             Join Our Team
           </h2>
           <p className="md:text-neutral-200 text-black text-md mb-6">
-            If you're a professional looking to work with us, or seeking support, fill out the form below.
+            If you're a qualified midwife and looking for flexible work, fill out the form below.
           </p>
           <form className="space-y-4">
             <input

@@ -29,9 +29,9 @@ const Footer = () => {
           </motion.div>
 
           {/* Bottom Section - Grid */}
-          <div className="grid md:grid-cols-12 gap-16">
+          <div className="grid md:grid-cols-8 gap-2">
             {/* Location & Hours */}
-            <motion.div 
+            {/* <motion.div 
               className="md:col-span-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -44,13 +44,8 @@ const Footer = () => {
                   <p>Birthing Town</p>
                   <p>BT1 2AB</p>
                 </div>
-                <div>
-                  <p>Mon - Fri: 9am - 6pm</p>
-                  <p>Sat: 10am - 4pm</p>
-                  <p>Sun: Closed</p>
                 </div>
-              </div>
-            </motion.div>
+            </motion.div> */}
 
             {/* Social Links */}
             <motion.div 
@@ -59,26 +54,27 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <h3 className="text-sm tracking-widest text-neutral-400 mb-6">CONNECT</h3>
+              <h3 className="text-sm tracking-widest text-neutral-400 mb-6">CONTACT US</h3>
               <div className="space-y-4">
                 <motion.a 
-                  href="https://www.instagram.com/midwifery_service/" 
+                  href="mailto:Contact@mymaternalhub.co.uk" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="block text-lg font-light hover:text-neutral-400 transition-colors duration-300"
                   whileHover={{ x: 10 }}
                 >
-                  Instagram
+                  Contact@mymaternalhub.co.uk
                 </motion.a>
                 <motion.a 
-                  href="https://www.tiktok.com/@midwifery_service" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block text-lg font-light hover:text-neutral-400 transition-colors duration-300"
-                  whileHover={{ x: 10 }}
-                >
-                  TikTok
-                </motion.a>
+  href="https://wa.me/447496383383?text=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20the%20services%20you%20provide."
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="block text-lg font-light hover:text-neutral-400 transition-colors duration-300"
+  whileHover={{ x: 10 }}
+>
+  +44 7496 383 383
+</motion.a>
+
               </div>
             </motion.div>
 

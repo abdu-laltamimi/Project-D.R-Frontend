@@ -42,7 +42,10 @@ const AboutSection = () => {
           >
             <div className="sticky top-32">
               <p className="text-2xl md:text-4xl text-neutral-600 leading-relaxed mb-8">
-              Private Midwife and Post-natal care at your doorstep.
+              Private Post-natal care at your doorstep.
+              </p>
+              <p className="text-xl md:text-2xl text-neutral-600 leading-relaxed mb-8">
+              At My Maternal Hub, we are dedicated to supporting mothers during the critical post-natal period with professional and compassionate care in the comfort of their own home. <br /> <br /> Our team of highly experienced midwives and midwifery assistants are committed to ensuring that you receive the best care possible. Whether thats a single session or on-going support, we're here for you.
               </p>
               {/* <div className="h-[1px] w-16 bg-neutral-300" /> */}
             </div>
@@ -56,7 +59,7 @@ const AboutSection = () => {
           >
             <div className="grid gap-12 md:text-center text-left">
               {[
-                { title: "Midwife at Your", desc: "Personalized home visits and dedicated support throughout your pregnancy journey", lastWord: "Doorstep" },
+                { title: "Post-natal Care at Your", desc: "Personalised home visits post birth providing all the care you require", lastWord: "Doorstep" },
                 { title: "Feeding, Bathing & Sleep", desc: "Expert guidance for essential newborn care and establishing healthy routines", lastWord: "Support" },
                 { title: "Mother's", desc: "Holistic support for physical and emotional health during pregnancy and postpartum", lastWord: "Wellbeing" },
                 { title: "Infant Development", desc: "Professional tracking and guidance for your baby's growth and developmental milestones", lastWord: "Monitoring" }
