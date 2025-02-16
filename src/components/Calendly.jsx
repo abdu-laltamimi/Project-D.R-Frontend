@@ -15,7 +15,7 @@ const Calendly = () => {
 
         </h3>
         <p className="text-lg text-black mb-6 md:text-left text-center">
-          Schedule a 30-minute session with us to discuss how we can support you on your journey.
+          Schedule a 15-minute session with us to discuss how we can support you on your journey.
         </p>
         <p className="text-sm text-white opacity-75">We are here to provide personalized guidance and care at your convenience.</p>
       </div>
