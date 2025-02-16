@@ -66,7 +66,7 @@ const Footer = () => {
                   Contact@mymaternalhub.co.uk
                 </motion.a>
                 <motion.a 
-  href="https://wa.me/447496383383?text=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20the%20services%20you%20provide."
+  href="https://wa.me/447746943715?text=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20the%20services%20you%20provide."
   target="_blank" 
   rel="noopener noreferrer"
   className="block text-lg font-light hover:text-neutral-400 transition-colors duration-300"
