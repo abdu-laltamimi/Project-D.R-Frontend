@@ -35,15 +35,15 @@ const NavBar = () => {
           <div className="flex items-center justify-between h-auto">
             {/* Logo */}
             <Link href="/" className="text-white text-xl tracking-wide hover:opacity-70 transition-opacity">
-              <Image src="/logo.svg" alt="Logo" width={200} height={200} />
+              <Image src="/logo.svg" alt="Logo" width={150} height={150} />
             </Link>
 
             {/* Navigation */}
             <div className="flex items-center gap-4 md:flex-row md:gap-18 md:pr-8">
-              <Link href="https://mymaternalhub.co.uk/survey/" className="text-white hidden md:block text-md tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2">
-                MidWife Survey
+              <Link href="https://calendly.com/abdul-alt-seamlessideas/15min?hide_gdpr_banner=1" className="text-white hidden md:block text-md tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2">
+                Book a Call
               </Link>
-              <a href="mailto:contact@mymaternalhub.co.uk" className="text-white text-sm md:text-md md:block tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6  py-2 ">
+              <a href="mailto:contact@mymaternalhub.co.uk" className="text-white text-md md:block tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6  py-2 ">
                 Contact Us
               </a>
             </div>

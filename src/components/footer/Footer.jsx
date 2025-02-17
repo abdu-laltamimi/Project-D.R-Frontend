@@ -24,7 +24,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h2 className={`${nunito.className} text-4xl md:text-5xl font-semibold md:mb-8 mb-4`}>
-             <span className="text-[#C8A9B9]">Start </span>Your Birth Journey <span className="text-[#6ca3a5]">Today.</span>
+             <span className="text-[#C8A9B9]">Start </span>Your Post-Natal Journey <span className="text-[#6ca3a5]">Today.</span>
             </h2>
           </motion.div>
 

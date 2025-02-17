@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowUpRight, FiChevronUp } from "react-icons/fi";
-import Services2 from '@/components/Services2';
+
 import { Nunito } from 'next/font/google';
 
 const nunito = Nunito({

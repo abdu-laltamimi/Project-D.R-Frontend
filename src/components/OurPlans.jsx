@@ -29,7 +29,7 @@ const OurPlans = () => {
           </motion.h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 md:px-24 md:gap-16 xl:gap-26 gap-8">
           {[
             // {
             //   title: "Premium Care",
@@ -44,29 +44,20 @@ const OurPlans = () => {
             {
               title: "On-Demand Care",
               features: [
-                "Flexible hourly booking",
-                "Professional care support",
                 "You decide what you need",
+                "Flexible hourly booking",
+                "Pricing depends on the hours",
                 "Book in 1 hour slots"
               ],
               highlight: true
             },
             {
-              title: "Everyday Care",
+              title: "Packaged Care",
               features: [
-                "5 Home visits",
-                "2-hour care sessions",
-                "Personalised care plan",
-                "Total of 10 hours of care"
-              ]
-            },
-            {
-              title: "Help Out Care",
-              features: [
-                "3 Home Visits",
-                "2-hour care sessions",
-                "Personalised care plan",
-                "Total of 6 hours of care"
+                "Tailored care plan to your needs",
+                "Flexible hours",
+                "Pricing depends on the packaged plan",
+                "Hours depend on the package"
               ]
             }
           ].map((plan, index) => (
@@ -74,7 +65,7 @@ const OurPlans = () => {
               key={index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 * index }}
+              transition={{ duration: 0.8, delay: 0.1 * index }}
               viewport={{ once: true }}
             //   whileHover={{ scale: plan.highlight ? 1.02 : 1 }}
               className={`bg-white rounded-xl p-8 shadow-2xl hover:shadow-xl transition-all duration-300 ${

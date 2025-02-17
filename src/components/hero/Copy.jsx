@@ -155,9 +155,9 @@ export const Copy = () => {
                 animate="visible"
                 custom={1}
               >
-                <Link href="https://calendly.com/abdul-alt-seamlessideas/30min?hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer">
+                <Link href="https://calendly.com/abdul-alt-seamlessideas/15min?hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer">
                   <button className="group flex inline-flex items-center gap-4 text-white border border-neutral-700 px-8 py-4 hover:bg-white/10 transition-colors">
-                    <span className="text-sm tracking-wider">Begin Your Birth Journey</span>
+                    <span className="text-sm tracking-wider">Begin Your Post-Natal Journey</span>
                   </button>
                 </Link>
               </motion.div>
@@ -208,7 +208,7 @@ export const Copy = () => {
                     <div className="space-y-2 ">
                       <p className={`${nunito.className} text-white text-lg font-normal`}>Personalized Care Plans</p>
                       <p className={`${nunito.className} text-white text-lg font-normal`}>24/7 Support Access</p>
-                      <p className={`${nunito.className} text-white text-lg font-normal`}>Home Birth Specialists</p>
+                      <p className={`${nunito.className} text-white text-lg font-normal`}>Post-Natal Care Specialists</p>
                     </div>
                   </div>
                 </div>
