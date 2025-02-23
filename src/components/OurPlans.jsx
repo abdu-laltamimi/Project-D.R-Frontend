@@ -87,7 +87,7 @@ const OurPlans = () => {
                 className="w-full bg-[#6CA3A5] text-white py-3 px-6 rounded-lg hover:bg-[#5b8a8c] transition-colors duration-300"
                 onClick={() => {
                   const message = encodeURIComponent(
-                    `Hi, I would like to find out more about your ${plan.title} services`
+                    `Hi, I would like to find out more about your ${plan.title}`
                   );
                   window.open(`https://wa.me/447506692599?text=${message}`, '_blank');
                 }}

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       const data = await resend.emails.send({
         from: 'contact@mymaternalhub.co.uk', // Sender email from your verified domain
         to: ['contact@mymaternalhub.co.uk'], // Your recipient email(s)
-        subject: 'URGENT: New BookingForm Submission!!',
+        subject: 'URGENT: New Booking Form Submission!!',
         html: `
         <p>URGENT: New Booking Form Submission From A Potential Customer Who Is Interested In Booking A Call With You!!</p>
           <p><strong>Name:</strong> ${fullName}</p>
