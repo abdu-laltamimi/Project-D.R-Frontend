@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiInstagram, FiMail } from 'react-icons/fi';
 import { FaTiktok } from 'react-icons/fa';
@@ -10,6 +10,35 @@ const nunito = Nunito({
   display: 'swap',
 });
 const Footer = () => {
+  // Add state for email subscription
+  const [email, setEmail] = useState('');
+  const [subscriptionStatus, setSubscriptionStatus] = useState('');
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setSubscriptionStatus('loading');
+
+    try {
+      const response = await fetch("/api/emailSubs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setSubscriptionStatus('subscribed');
+        setEmail(''); // Reset email field
+      } else {
+        setSubscriptionStatus('error');
+      }
+    } catch (error) {
+      console.error("Error subscribing:", error);
+      setSubscriptionStatus('error');
+    }
+  };
+
   return (
     <footer className="bg-[#0C0C0C] text-white border-neutral-800">
       <div className="max-w-[1400px] mx-auto px-6">
@@ -97,13 +126,36 @@ const Footer = () => {
               <p className="text-lg font-light mb-6">
                 Subscribe for midwifery updates and birthing stories.
               </p>
-              <form className="relative">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full bg-transparent border-b border-neutral-800 py-4 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-400 transition-colors"
-                />
-              </form>
+              {subscriptionStatus === 'subscribed' ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-green-500"
+                >
+                  Thank you for subscribing!
+                </motion.div>
+              ) : (
+                <form className="relative" onSubmit={handleSubscribe}>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="w-full bg-transparent border-b border-neutral-800 py-4 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-400 transition-colors"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white transition-colors"
+                    disabled={subscriptionStatus === 'loading'}
+                  >
+                    {subscriptionStatus === 'loading' ? 'SENDING...' : '→'}
+                  </button>
+                  {subscriptionStatus === 'error' && (
+                    <p className="text-red-500 text-sm mt-2">Failed to subscribe. Please try again.</p>
+                  )}
+                </form>
+              )}
             </motion.div>
           </div>
         </div>
