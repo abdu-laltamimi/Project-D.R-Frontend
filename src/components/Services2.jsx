@@ -7,7 +7,6 @@ import { FiArrowRight } from "react-icons/fi";
 const Services2 = () => {
   return (
     <section className="relative py-32 rounded-lg md:rounded-3xl mx-0 sm:mx-0 md:mx-2 lg:mx-7 bg-[#0C0C0C] overflow-hidden">
-      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/cta.jpeg"
@@ -20,7 +19,6 @@ const Services2 = () => {
       </div>
       
       <div className="relative z-20 max-w-[1400px] mx-auto px-6">
-        {/* Header Text */}
         <motion.div 
           className="max-w-4xl mx-auto text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -46,14 +44,12 @@ const Services2 = () => {
           </motion.h2>
         </motion.div>
 
-        {/* Delivery Service Buttons */}
         <motion.div 
           className="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          {/* Uber Eats */}
           <Link href="/" target="_blank" rel="noopener noreferrer">
             <motion.div 
               className="group relative overflow-hidden bg-white text-black p-8 rounded-sm cursor-pointer"
@@ -69,7 +65,6 @@ const Services2 = () => {
             </motion.div>
           </Link>
 
-          {/* Just Eat */}
           <Link href="/" target="_blank" rel="noopener noreferrer">
             <motion.div 
               className="group relative overflow-hidden border border-neutral-800 text-white p-8 rounded-sm cursor-pointer"

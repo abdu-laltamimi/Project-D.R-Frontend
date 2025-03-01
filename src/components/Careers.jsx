@@ -15,7 +15,6 @@ const Careers = () => {
     visible: { opacity: 1, x: 0 },
   };
 
-  // Form state
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -30,7 +29,7 @@ const Careers = () => {
     setStatus('loading');
 
     try {
-      const response = await fetch("/api/joinMidwives", { // Calls the backend API
+      const response = await fetch("/api/joinMidwives", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +39,7 @@ const Careers = () => {
 
       if (response.ok) {
         setStatus('submitted');
-        setFormData({ fullName: '', email: '', phone: '', message: '' }); // Reset form fields
+        setFormData({ fullName: '', email: '', phone: '', message: '' }); 
       } else {
         setStatus('error');
       }
@@ -59,7 +58,6 @@ const Careers = () => {
 
   return (
     <section className="relative h-[600px] md:h-[700px] w-full">
-      {/* Background Image */}
       <div className="absolute hidden md:block inset-0">
         <Image
           src="/babyCta.jpeg"
@@ -73,7 +71,6 @@ const Careers = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/10 "></div>
       </div>
 
-      {/* Form Container */}
       <div className="relative z-10 flex items-center h-full">
         <motion.div
           className="bg-white rounded-2xl bg-opacity-10 backdrop-blur-[3px] p-8 md:p-8 w-[90%] sm:w-[70%] md:w-[45%] lg:w-[35%]  mx-auto md:mx-auto shadow-2xl"

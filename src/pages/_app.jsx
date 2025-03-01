@@ -10,7 +10,6 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#27272a" />
 
-        {/* Favicon & App Icons */}
         <link rel="apple-touch-icon" sizes="180x180" href="/maternal.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/maternal.ico" />
         <link rel="icon" type="image/png" sizes="16x16" href="/maternal.ico" />

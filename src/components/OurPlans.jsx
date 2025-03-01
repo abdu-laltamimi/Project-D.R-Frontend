@@ -67,7 +67,6 @@ const OurPlans = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 * index }}
               viewport={{ once: true }}
-            //   whileHover={{ scale: plan.highlight ? 1.02 : 1 }}
               className={`bg-white rounded-xl p-8 shadow-2xl hover:shadow-xl transition-all duration-300 ${
                 plan.highlight ? 'border-2 border-[#6CA3A5] shadow-[0px_0.1px_0px_0.2px_#6CA3A5]' : ''
               }`}

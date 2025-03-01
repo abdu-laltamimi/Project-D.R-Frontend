@@ -76,7 +76,6 @@ const AboutSection = () => {
                     </h3>
                     <p className={`${nunito.className} text-neutral-600`}>{service.desc}</p>
                   </div>
-                  {/* <FiArrowRight className="text-2xl transform group-hover:translate-x-2 hidden md:block transition-transform" /> */}
                 </motion.div>
               ))}
             </div>

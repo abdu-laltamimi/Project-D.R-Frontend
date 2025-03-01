@@ -4,7 +4,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* Google Tag Manager - Add to <head> */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -18,7 +17,6 @@ export default function Document() {
         />
       </Head>
       <body>
-        {/* Google Tag Manager (noscript) - Add immediately after <body> */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KCPKHXV2"
