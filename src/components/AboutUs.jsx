@@ -1,10 +1,8 @@
 import React from 'react';
-import { InlineWidget } from "react-calendly";
-import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiArrowRight } from "react-icons/fi";
 import { Nunito } from 'next/font/google';
+
+
 
 const nunito = Nunito({
   weight: ['200', '300', '400', '500', '600', '700', '800', '900', '1000'],

@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Head>
         <title>My Maternal Hub | Midwife & Postnatal Services in Greater Manchester</title>
-        <meta name="description" content="Expert midwife and postnatal care services in Greater Manchester. Compassionate support for new mothers, home visits, and lactation consulting. Book now!" />
+        <meta name="description" content="Expert midwife and postnatal care services. Compassionate support for new mothers, home visits, and lactation consulting. Book now!" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="My Maternal Hub" />
         <meta name="theme-color" content="#27272a" />
@@ -24,7 +24,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="My Maternal Hub" />
         <meta property="og:title" content="My Maternal Hub | Midwife & Postnatal Care in Manchester" />
-        <meta property="og:description" content="Providing trusted midwife and postnatal care services in Greater Manchester. Compassionate and professional support for new mothers." />
+        <meta property="og:description" content="Providing trusted midwife and postnatal care services. Compassionate and professional support for new mothers." />
         <meta property="og:url" content="https://www.mymaternalhub.co.uk" />
         <meta property="og:image" content="https://www.mymaternalhub.co.uk/images/babyCta.jpeg" />
         <meta property="og:image:alt" content="A caring midwife assisting a newborn baby" />
@@ -34,7 +34,7 @@ export default function Home() {
         <meta name="twitter:site" content="@your_twitter_handle" />
         <meta name="twitter:creator" content="@your_twitter_handle" />
         <meta name="twitter:title" content="My Maternal Hub | Midwife & Postnatal Services" />
-        <meta name="twitter:description" content="Get expert midwifery and postnatal care in Greater Manchester. Book a consultation today!" />
+        <meta name="twitter:description" content="Get expert midwifery and postnatal care. Book a consultation today!" />
         <meta name="twitter:image" content="https://www.mymaternalhub.co.uk/images/babyCta.jpeg" />
         <meta name="twitter:image:alt" content="A caring midwife assisting a newborn baby" />
 

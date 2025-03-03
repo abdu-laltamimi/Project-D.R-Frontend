@@ -7,9 +7,15 @@ This project is built with React, NextJS and TailwindCSS. If you're already comf
 
 This template is built on top of [NextJS](https://nextjs.org/), a full stack development framework built on top of React.
 
+
+
 I won't take time here going over exactly how NextJS works on a deep level (to be fair, this project doesn't use Next at a deep level), but if you're interested in learning, their docs are [here](https://nextjs.org/docs/getting-started).
 
+
+
 At the root of your project, you'll see a `package.json` file defining our dependencies.
+
+
 
 Most of this is boilerplate, but I will call out the following dependencies:
 
