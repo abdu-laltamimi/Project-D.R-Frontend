@@ -35,28 +35,6 @@ export default function SurveyPage() {
 
       <main className={`${font.className} min-h-screen bg-[#FFFAFA]`}>
         {/* Header Section */}
-        <header className="py-4 px-4 md:px-8 bg-white shadow-sm">
-          <div className="container mx-auto flex justify-between items-center">
-            <Link href="/" className="flex items-center">
-              <div className="relative h-16 w-16 mr-2">
-                {/* Replace with your actual logo path */}
-                <Image 
-                  src="/images/logo.png" 
-                  alt="My Maternal Hub Logo" 
-                  layout="fill" 
-                  objectFit="contain"
-                  priority
-                />
-              </div>
-              <span className="text-xl font-semibold text-gray-800">My Maternal Hub</span>
-            </Link>
-            <nav>
-              <Link href="/" className="px-4 py-2 rounded-lg bg-pink-100 text-pink-800 font-medium hover:bg-pink-200 transition-colors">
-                Return to Home
-              </Link>
-            </nav>
-          </div>
-        </header>
 
         {/* Survey Content */}
         <section className="container mx-auto py-12 px-4 md:px-8">
