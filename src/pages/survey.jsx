@@ -40,7 +40,7 @@ export default function SurveyPage() {
         <section className="container mx-auto py-12 px-4 md:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">We Value Your Feedback</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-800 font-roboto mb-3">We Value Your Feedback</h1>
               <p className="text-gray-600 md:text-lg">Your responses help us improve our maternal care services.</p>
             </div>
             
