@@ -39,7 +39,7 @@ const NavBar = () => {
               <Link href="https://calendly.com/abdul-alt-seamlessideas/15min?hide_gdpr_banner=1" className="text-white hidden md:block text-md tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6 py-2">
                 Book a Call
               </Link>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSfoG-c2Sk6p1IbRQPOHvlQ1Uxxi2RrTayTwbJoOZOt1h0Ew/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="text-white text-md md:block tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6  py-2 ">
+              <a href="/survey"  target="_blank" rel="noopener noreferrer" className="text-white text-md md:block tracking-wider font-light hover:opacity-70 bg-[#003845] transition-opacity rounded-full px-6  py-2 ">
                 Take a Survey
               </a>
             </div>
