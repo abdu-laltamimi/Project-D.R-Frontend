@@ -10,7 +10,6 @@ const nunito = Nunito({
   display: 'swap',
 });
 const Footer = () => {
-  // Add state for email subscription
   const [email, setEmail] = useState('');
   const [subscriptionStatus, setSubscriptionStatus] = useState('');
 
@@ -42,9 +41,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#0C0C0C] text-white border-neutral-800">
       <div className="max-w-[1400px] mx-auto px-6">
-        {/* Main Content */}
         <div className="py-32">
-          {/* Top Section - Large Text */}
           <motion.div 
             className="mb-32 max-w-4xl"
             initial={{ opacity: 0, y: 20 }}
@@ -57,7 +54,6 @@ const Footer = () => {
             </h2>
           </motion.div>
 
-          {/* Bottom Section - Grid */}
           <div className="grid md:grid-cols-8 gap-2">
             {/* Location & Hours */}
             {/* <motion.div 
@@ -103,7 +99,7 @@ const Footer = () => {
 >
   +44 7746 943715
 </motion.a>
-<motion.a 
+{/* <motion.a 
   href="https://wa.me/447746943715?text=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20the%20services%20you%20provide."
   target="_blank" 
   rel="noopener noreferrer"
@@ -111,11 +107,9 @@ const Footer = () => {
   whileHover={{ x: 10 }}
 >
   +44 7506 692599
-</motion.a>
+</motion.a> */}
               </div>
             </motion.div>
-
-            {/* Newsletter */}
             <motion.div 
               className="md:col-span-4"
               initial={{ opacity: 0, y: 20 }}
@@ -159,8 +153,6 @@ const Footer = () => {
             </motion.div>
           </div>
         </div>
-
-        {/* Copyright */}
         <div className="py-8 border-t border-neutral-800">
           <p className="text-sm text-neutral-400 text-center">
             © {new Date().getFullYear()} My Meternal Hub. All rights reserved.
