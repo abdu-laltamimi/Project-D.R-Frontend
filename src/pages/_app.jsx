@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/maternal.ico" />
 
       </Head>
-      <NavBar />
+      {/* <NavBar /> */}
       <Component {...pageProps} />
     </>
   );
