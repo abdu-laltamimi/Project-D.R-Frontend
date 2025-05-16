@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-import NavBar from "@/components/NavBar";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }) {
@@ -16,7 +15,6 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/maternal.ico" />
 
       </Head>
-      {/* <NavBar /> */}
       <Component {...pageProps} />
     </>
   );

@@ -1,398 +1,321 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Nunito } from 'next/font/google';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { FiActivity, FiUser, FiBarChart2, FiCalendar } from 'react-icons/fi';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import NavBar from '@/components/NavBar';
+"use client"
 
-const nunito = Nunito({
-  weight: ['200', '300', '400', '500', '600', '700', '800', '900', '1000'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+import React from "react"
+import { useState } from "react"
+import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
+import { FiUploadCloud, FiPrinter, FiShare2 } from "react-icons/fi"
+import { MdOutlineHealthAndSafety } from "react-icons/md"
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
-const mockChartData = [
-  { day: 'Mon', calories: 2100, workouts: 45 },
-  { day: 'Tue', calories: 2400, workouts: 55 },
-  { day: 'Wed', calories: 2200, workouts: 40 },
-  { day: 'Thu', calories: 2800, workouts: 65 },
-  { day: 'Fri', calories: 2300, workouts: 50 },
-  { day: 'Sat', calories: 1900, workouts: 35 },
-  { day: 'Sun', calories: 2600, workouts: 60 },
-];
+const MMULogo = () => (
+  <Image src="/mmu2.png" alt="MMU Logo" width={100} height={100} />
+)
+
+function generateRecommendations(prediction) {
+  if (prediction.includes("No DR")) {
+    return [
+      "Schedule a follow-up examination in 12 months.",
+      "Educate the patient on maintaining good blood sugar control and a healthy lifestyle.",
+      "Encourage regular eye exams, even in the absence of symptoms.",
+      "Advise on the importance of controlling blood pressure and cholesterol levels.",
+      "Recommend a balanced diet rich in vitamins A, C, and E to support eye health.",
+    ]
+  } else {
+    return [
+      "Refer the patient to an ophthalmologist for a comprehensive eye examination.",
+      "Consider additional tests to assess the extent of retinopathy and potential treatment options.",
+      "Advise on the importance of strict glycemic control to slow disease progression.",
+      "Discuss potential need for more frequent monitoring of retinal health.",
+      "Educate on the signs and symptoms of worsening retinopathy to report immediately.",
+    ]
+  }
+}
 
 export default function Home() {
-  const router = useRouter();
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [analyzing, setAnalyzing] = useState(false)
+  const [result, setResult] = useState(null)
+  const [error, setError] = useState(null)
+  const [apiUrl, setApiUrl] = useState("")
+  const [isUrlSubmitted, setIsUrlSubmitted] = useState(false)
 
-  const handleLoginClick = () => {
-    router.push('/login');
-  };
+  const handleUrlSubmit = (e) => {
+    e.preventDefault()
+    if (!apiUrl.trim()) {
+      setError("Please enter a valid API URL")
+      return
+    }
+    setIsUrlSubmitted(true)
+    setError(null)
+  }
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    if (!file.type.includes("image/")) {
+      setError("Please upload an image file")
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setSelectedImage(reader.result)
+      analyzeImage(file)
+    }
+    reader.onerror = () => {
+      setError("Error reading file")
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const analyzeImage = async (file) => {
+    setAnalyzing(true)
+    setError(null)
+
+    try {
+      const formData = new FormData()
+      formData.append("image", file)
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}: ${response.statusText}`)
+      }
+
+      const data = await response.json()
+      console.log("API response:", data)
+      setResult({
+        prediction: data.prediction,
+        confidence: data.confidence,
+        recommendations: generateRecommendations(data.prediction),
+      })
+    } catch (err) {
+      console.error("Error analyzing image:", err)
+      setError(`Failed to analyze image: ${err instanceof Error ? err.message : String(err)}`)
+    } finally {
+      setAnalyzing(false)
+    }
+  }
 
   return (
-    <>
-      <Head>
-        <title>FitTrack | Your All-in-One Fitness Tracking Solution</title>
-        <meta name="description" content="Track workouts, nutrition, progress photos, and achieve your fitness goals with FitTrack's comprehensive dashboard" />
-      </Head>
-
-      <main className={`${nunito.className} min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 pt-20`}>
-        <NavBar />
-
-        {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text */}
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-screen p-4 bg-gradient-to-b from-gray-100 to-white"
+    >
+      <div className="max-w-6xl mx-auto space-y-8">
+        {/* Header Section */}
+        <motion.div 
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+          className="bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-gray-200"
+        >
+          <div className="text-center space-y-4">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                Track Your Fitness Journey Like Never Before
-              </h2>
-              <p className="text-gray-600 text-lg mb-8">
-                Get detailed insights into your workouts, track your progress, and achieve your fitness goals with our comprehensive dashboard.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
-                onClick={handleLoginClick}
-              >
-                Start Tracking Now
-              </motion.button>
-            </motion.div>
-
-            {/* Right Column - Dashboard Preview */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="bg-white rounded-2xl shadow-2xl p-6"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                {/* Dashboard Preview Cards */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-blue-50 p-4 rounded-xl"
-                >
-                  <FiActivity className="text-blue-600 text-2xl mb-2" />
-                  <h3 className="font-semibold text-gray-800">Daily Activity</h3>
-                  <p className="text-sm text-gray-600">Track your daily progress</p>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-purple-50 p-4 rounded-xl"
-                >
-                  <FiBarChart2 className="text-purple-600 text-2xl mb-2" />
-                  <h3 className="font-semibold text-gray-800">Statistics</h3>
-                  <p className="text-sm text-gray-600">View detailed analytics</p>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-green-50 p-4 rounded-xl"
-                >
-                  <FiCalendar className="text-green-600 text-2xl mb-2" />
-                  <h3 className="font-semibold text-gray-800">Workout Plans</h3>
-                  <p className="text-sm text-gray-600">Schedule your routines</p>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-orange-50 p-4 rounded-xl"
-                >
-                  <FiUser className="text-orange-600 text-2xl mb-2" />
-                  <h3 className="font-semibold text-gray-800">Profile</h3>
-                  <p className="text-sm text-gray-600">Manage your account</p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Features Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Everything You Need to Track Your Fitness Journey
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Comprehensive tracking tools designed for both beginners and advanced athletes
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="bg-white p-6 rounded-2xl shadow-lg"
-            >
-              <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <FiActivity className="text-blue-600 text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Workout Tracking</h3>
-              <p className="text-gray-600">
-                Log exercises, sets, reps, and weights. Track your personal records and see your progress over time.
-              </p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="bg-white p-6 rounded-2xl shadow-lg"
-            >
-              <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <FiBarChart2 className="text-green-600 text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Nutrition Analysis</h3>
-              <p className="text-gray-600">
-                Track macros, calories, and meal plans. Get personalized nutrition recommendations.
-              </p>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="bg-white p-6 rounded-2xl shadow-lg"
-            >
-              <div className="h-12 w-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <FiCalendar className="text-purple-600 text-2xl" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Progress Photos</h3>
-              <p className="text-gray-600">
-                Visual progress tracking with side-by-side comparisons and measurements tracking.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Dashboard Preview Section */}
-        <section className="bg-gray-900 py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Powerful Analytics at Your Fingertips
-              </h2>
-              <p className="text-gray-300 text-lg">
-                Get detailed insights into your fitness journey with our intuitive dashboard
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-2xl shadow-2xl p-8"
-            >
-              {/* Mock Dashboard UI */}
-              <div className="grid grid-cols-4 gap-6 mb-8">
-                <div className="bg-blue-50 p-4 rounded-xl">
-                  <h4 className="font-semibold text-gray-600">Weekly Workouts</h4>
-                  <p className="text-2xl font-bold text-blue-600">5/7</p>
-                </div>
-                <div className="bg-green-50 p-4 rounded-xl">
-                  <h4 className="font-semibold text-gray-600">Calories Burned</h4>
-                  <p className="text-2xl font-bold text-green-600">2,450</p>
-                </div>
-                <div className="bg-purple-50 p-4 rounded-xl">
-                  <h4 className="font-semibold text-gray-600">Active Minutes</h4>
-                  <p className="text-2xl font-bold text-purple-600">180</p>
-                </div>
-                <div className="bg-orange-50 p-4 rounded-xl">
-                  <h4 className="font-semibold text-gray-600">Personal Records</h4>
-                  <p className="text-2xl font-bold text-orange-600">3</p>
-                </div>
-              </div>
-              
-              <div className="mt-8">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-semibold text-gray-800">Weekly Progress</h3>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
-                      <span className="text-sm text-gray-600">Calories</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 rounded-full bg-purple-500 mr-2"></div>
-                      <span className="text-sm text-gray-600">Active Minutes</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="h-[300px] w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={mockChartData}>
-                      <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
-                      <XAxis dataKey="day" />
-                      <YAxis />
-                      <Tooltip />
-                      <Area
-                        type="monotone"
-                        dataKey="calories"
-                        stroke="#3B82F6"
-                        fill="url(#colorCalories)"
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="workouts"
-                        stroke="#8B5CF6"
-                        fill="url(#colorWorkouts)"
-                      />
-                      <defs>
-                        <linearGradient id="colorCalories" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.2}/>
-                          <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
-                        </linearGradient>
-                        <linearGradient id="colorWorkouts" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.2}/>
-                          <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0}/>
-                        </linearGradient>
-                      </defs>
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Sports & Activities Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Track Any Sport or Workout
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Whether you're into weightlifting, cardio, or sports - we've got you covered
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            {/* Weightlifting */}
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30 z-10" />
-              <img 
-                src="/weighlifting.jpeg" 
-                alt="Weightlifting" 
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 text-white">
-                <h3 className="text-xl font-bold mb-2">Weightlifting</h3>
-                <p className="text-sm text-gray-200">
-                  Track sets, reps, and PRs
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Running */}
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30 z-10" />
-              <img 
-                src="/running.jpeg" 
-                alt="Running" 
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 text-white">
-                <h3 className="text-xl font-bold mb-2">Running</h3>
-                <p className="text-sm text-gray-200">
-                  Distance, pace, and routes
-                </p>
-              </div>
-            </motion.div>
-
-            {/* HIIT */}
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30 z-10" />
-              <img 
-                src="/hiit.jpeg" 
-                alt="HIIT" 
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 text-white">
-                <h3 className="text-xl font-bold mb-2">HIIT</h3>
-                <p className="text-sm text-gray-200">
-                  Intervals and heart rate zones
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Yoga */}
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="relative overflow-hidden rounded-2xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/30 z-10" />
-              <img 
-                src="/ypga.jpeg" 
-                alt="Yoga" 
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 text-white">
-                <h3 className="text-xl font-bold mb-2">Yoga</h3>
-                <p className="text-sm text-gray-200">
-                  Sessions and flexibility progress
-                </p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Additional Sports Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            {['Swimming', 'Cycling', 'Basketball', 'Tennis', 'CrossFit', 'Boxing', 'Pilates', 'Soccer'].map((sport) => (
-              <motion.div
-                key={sport}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-50 rounded-xl p-4 text-center"
-              >
-                <p className="font-semibold text-gray-800">{sport}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mt-16"
-          >
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Ready to Start Your Fitness Journey?
-            </h3>
-            <p className="text-gray-600 mb-8">
-              Join thousands of users who are already tracking their progress
-            </p>
-            <motion.button
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
-              onClick={handleLoginClick}
+              className="flex flex-col items-center gap-4"
             >
-              Get Started Now
-            </motion.button>
+              <MMULogo />
+              <MdOutlineHealthAndSafety className="h-16 w-16 text-blue-600" />
+            </motion.div>
+            <h2 className="text-3xl font-bold text-gray-800">Project D.R</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Upload a retinal image for automated Diabetic Retinopathy Detection. Our system provides instant analysis
+              with high accuracy.
+            </p>
+          </div>
+        </motion.div>
+        {!isUrlSubmitted && (
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-gray-200"
+          >
+            <form onSubmit={handleUrlSubmit} className="space-y-4">
+              <h3 className="text-xl font-semibold text-gray-800">Connect to API</h3>
+              <div className="space-y-2">
+                <input
+                  type="url"
+                  value={apiUrl}
+                  onChange={(e) => setApiUrl(e.target.value)}
+                  placeholder="Enter your API URL (e.g., https://your-ngrok-url.ngrok-free.app/predict)"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Connect
+                </motion.button>
+              </div>
+            </form>
           </motion.div>
-        </section>
-      </main>
-    </>
-  );
+        )}
+        {isUrlSubmitted && (
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div 
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              className="bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-gray-200"
+            >
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-gray-800">Upload Image</h3>
+                <motion.div 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center justify-center"
+                >
+                  <label className="cursor-pointer w-full">
+                    <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 hover:border-blue-500 transition-colors">
+                      <div className="space-y-4 text-center">
+                        <motion.div
+                          animate={{ y: [0, -5, 0] }}
+                          transition={{ repeat: Infinity, duration: 2 }}
+                        >
+                          <FiUploadCloud className="mx-auto h-12 w-12 text-blue-500" />
+                        </motion.div>
+                        <div>
+                          <input
+                            type="file"
+                            id="file-upload"
+                            className="hidden"
+                            accept="image/png, image/jpeg"
+                            onChange={handleImageUpload}
+                          />
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => document.getElementById("file-upload")?.click()}
+                            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                          >
+                            Select Image
+                          </motion.button>
+                        </div>
+                        <p className="text-sm text-gray-400">Supported formats: JPEG, PNG</p>
+                      </div>
+                    </div>
+                  </label>
+                </motion.div>
+                {error && (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-red-400 text-sm text-center mt-2"
+                  >
+                    {error}
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+
+            <AnimatePresence>
+              {selectedImage && (
+                <motion.div 
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: 20, opacity: 0 }}
+                  className="bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-xl border border-gray-200"
+                >
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-gray-800">Analysis Results</h3>
+                    <motion.div 
+                      initial={{ scale: 0.95 }}
+                      animate={{ scale: 1 }}
+                      className="aspect-square relative rounded-xl overflow-hidden border border-gray-200"
+                    >
+                      <Image
+                        src={selectedImage}
+                        alt="Retinal scan analysis"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 800px"
+                        priority
+                        className="object-contain"
+                      />
+                    </motion.div>
+
+                    {analyzing ? (
+                      <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="space-y-4"
+                      >
+                        <p className="text-center font-medium text-gray-800">Analyzing image...</p>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                          className="flex justify-center"
+                        >
+                          <AiOutlineLoading3Quarters className="w-8 h-8 text-blue-500" />
+                        </motion.div>
+                      </motion.div>
+                    ) : result ? (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-4"
+                      >
+                        <motion.div 
+                          whileHover={{ scale: 1.02 }}
+                          className="p-4 bg-gray-200/50 rounded-xl space-y-2 border border-gray-200"
+                        >
+                          <h4 className="font-semibold text-gray-800">Diagnosis</h4>
+                          <p className="text-2xl font-bold text-blue-400">{result.prediction}</p>
+                          <p className="text-sm text-gray-600">Confidence: {result.confidence}</p>
+                        </motion.div>
+
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-gray-800">Recommendations</h4>
+                          <ul className="space-y-2">
+                            {result.recommendations.map((rec, index) => (
+                              <motion.li
+                                key={index}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                className="text-sm text-gray-600 flex items-start gap-2"
+                              >
+                                <span className="text-blue-500">•</span>
+                                {rec}
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="flex gap-4 pt-4">
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => window.print()}
+                            className="w-full px-4 py-3 border border-gray-200 text-gray-800 rounded-lg hover:bg-gray-200/50 flex items-center justify-center gap-2"
+                          >
+                            <FiPrinter className="w-5 h-5" />
+                            Print Results
+                          </motion.button>
+                        </div>
+                      </motion.div>
+                    ) : null}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
+      </div>
+
+      <motion.footer 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="border-t border-gray-200 mt-8 pt-6 text-center text-sm text-gray-600"
+      >
+        <p>&copy; {new Date().getFullYear()} Manchester Metropolitan University. All rights reserved.</p>
+        <p className="mt-1">Developed by the Faculty of Health and Education</p>
+      </motion.footer>
+    </motion.div>
+  )
 }
